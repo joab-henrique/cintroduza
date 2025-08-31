@@ -433,7 +433,7 @@ const levels: GameLevel[] = [
 	},
 	{
 		id: 19,
-		title: "Fase 19: O Labirinto Modulado",
+		title: "Fase 19 - DESAFIO: O Labirinto Modulado",
 		grid: [
 			[0, 0, 4, 0, 0, 0, 0, 0],
 			[0, 0, 4, 0, 0, 0, 0, 0],
