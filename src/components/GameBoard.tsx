@@ -368,6 +368,108 @@ const levels: GameLevel[] = [
 			"        direita()",
 			"    cima()",
 		]
+	},
+	{
+		id: 16,
+		title: "Fase 16: O Desvio Diagonal",
+		grid: [
+			[0, 3, 0, 0, 0, 0, 0, 0],
+			[0, 0, 3, 0, 0, 0, 0, 0],
+			[0, 0, 0, 3, 0, 0, 0, 0],
+			[0, 0, 0, 0, 3, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0]
+		],
+		startPosition: {y: 0, x: 0},
+		targetPath: [
+			{y: 0, x: 0},
+			{y: 0, x: 1},
+			{y: 1, x: 1},
+			{y: 1, x: 2},
+			{y: 2, x: 2},
+			{y: 2, x: 3},
+			{y: 3, x: 3},
+			{y: 3, x: 4}
+		],
+		code: [
+			"for i in range(4):",
+			"    if chao == vermelho:",
+			"        baixo()",
+			"    direita()",
+		]
+	},
+	{
+		id: 17,
+		title: "Fase 17: A Extrema Repetição?",
+		grid: [
+			[3, 3, 3, 0, 0, 0, 0, 0],
+			[0, 0, 0, 3, 3, 3, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 0]
+		],
+		startPosition: {y: 0, x: 2},
+		targetPath: [
+			{y: 0, x: 2},
+			{y: 0, x: 1},
+			{y: 0, x: 0},
+			{y: 0, x: 7},
+			{y: 7, x: 7},
+			{y: 7, x: 0}
+		],
+		code: [
+			"for _ in range(200):",
+			"    if chao == vermelho:",
+			"        esquerda()",
+			"",
+			"cima()",
+			"direita()"
+		]
+	},
+	{
+		id: 19,
+		title: "Fase 19: O Labirinto Modulado",
+		grid: [
+			[0, 0, 4, 0, 0, 0, 0, 0],
+			[0, 0, 4, 0, 0, 0, 0, 0],
+			[0, 0, 4, 0, 0, 0, 0, 0],
+			[0, 0, 4, 5, 0, 0, 0, 0],
+			[0, 0, 5, 0, 0, 0, 0, 0],
+			[0, 5, 4, 0, 0, 0, 0, 0],
+			[0, 4, 0, 0, 0, 0, 0, 0],
+			[0, 4, 0, 0, 0, 0, 0, 0]
+		],
+		startPosition: {y: 7, x: 1},
+		targetPath: [
+			{y: 7, x: 1},
+			{y: 6, x: 1},
+			{y: 5, x: 1},
+			{y: 5, x: 2},
+			{y: 4, x: 2},
+			{y: 3, x: 2},
+			{y: 3, x: 1},
+			{y: 2, x: 1},
+			{y: 1, x: 1},
+			{y: 1, x: 2},
+			{y: 0, x: 2}
+		],
+		code: [
+			"passo = 0",
+			"while passo < 10:",
+			"    if chao == roxo:",
+			"        if passo % 2 == 0:",
+			"            direita()",
+			"        else:",
+			"            esquerda()",
+			"    else:",
+			"        cima()",
+			"    passo += 1",
+		]
 	}
 ];
 
@@ -626,7 +728,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ initialLevel = 0, onlyLoopWorld =
 							)}
 							{gameState === 'playing' && (
 								<p className="text-muted-foreground">
-									Siga o caminho azul usando os controles!
+									Execute o código usando os controles!
 								</p>
 							)}
 						</div>
