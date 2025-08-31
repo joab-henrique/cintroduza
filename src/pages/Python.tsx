@@ -23,16 +23,16 @@ const Python = () => {
       title: "🔄 Laços de Repetição",
       description: "Dominando for, while e loops avançados",
       icon: Repeat,
-      phases: 6,
+      phases: 10,
       color: "bg-gradient-python",
       emoji: "🌀"
     },
     {
       id: "listas",
-      title: "📋 Listas e Arrays",
-      description: "Manipulação de estruturas de dados",
+      title: "📋 Listas",
+      description: "Coletando e manipulando dados",
       icon: List,
-      phases: 7,
+      phases: 10,
       color: "bg-gradient-java",
       emoji: "📊"
     },
@@ -130,12 +130,37 @@ const Python = () => {
                   <CardContent className="text-center space-y-4 relative z-10">
                     <div className="grid grid-cols-1 gap-4">
                       <div className="bg-gradient-card rounded-lg p-3 border border-border">
-                        <div className="text-2xl font-bold text-python">2</div>
+                        <div className="text-2xl font-bold text-python">10</div>
                         <p className="text-xs text-muted-foreground">Fases</p>
                       </div>
                     </div>
                     <div className="bg-python/10 rounded-lg p-3 group-hover:bg-python/20 transition-colors duration-300">
                       <div className="flex items-center justify-center gap-2 text-python font-semibold">
+                        <span>Entrar no Mundo</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to="/python/listas" className="group">
+                <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-java/20 hover:border-java/60 animate-slide-up">
+                  <div className="absolute inset-0 bg-gradient-java opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <CardHeader className="text-center pb-4 relative z-10">
+                    <div className="w-20 h-20 mx-auto mb-4 bg-gradient-java rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow-java">
+                      <div className="text-3xl">🧺</div>
+                    </div>
+                    <CardTitle className="text-xl mb-2 group-hover:text-java transition-colors">Listas</CardTitle>
+                    <CardDescription className="text-sm">Pratique a coleta e manipulação de dados</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center space-y-4 relative z-10">
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="bg-gradient-card rounded-lg p-3 border border-border">
+                        <div className="text-2xl font-bold text-java">4</div>
+                        <p className="text-xs text-muted-foreground">Fases</p>
+                      </div>
+                    </div>
+                    <div className="bg-java/10 rounded-lg p-3 group-hover:bg-java/20 transition-colors duration-300">
+                      <div className="flex items-center justify-center gap-2 text-java font-semibold">
                         <span>Entrar no Mundo</span>
                       </div>
                     </div>
