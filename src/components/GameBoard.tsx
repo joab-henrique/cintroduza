@@ -222,7 +222,7 @@ const levels: GameLevel[] = [
 	},
     {
         id: 20,
-        title: "Fase 20: A Lista de Compras",
+        title: "Fase 20: A Lista",
         grid: [
             [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 4, 0, 9, 0, 3, 0, 0], 
@@ -238,10 +238,13 @@ const levels: GameLevel[] = [
         targetList: [4, 9, 3], 
         code: [
             "lista = []",
-            "// Mova-se até um item e use append()",
-            "// Repita para todos os itens...",
-			"// Explore os outros comandos",
-            "// No final, clique em verificar()",
+            "",
+            "while len(lista) < 3:",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append()",
+            "",
+            "verificar()",
         ]
     },
     {
@@ -251,24 +254,30 @@ const levels: GameLevel[] = [
         startPosition: { y: 1, x: 0 },
         targetPath: [{ y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, { y: 1, x: 5 }],
         targetList: [3, 4, 6],
-        code: ["1. Colete todos os itens.", "2. Sua lista ficará: [vermelho, verde, roxo, azul]", "3. O item 'roxo' está no índice 2 e é indesejado.", "4. Use o comando pop(índice) para removê-lo.", "5. Vá para a SAÍDA e verifique sua lista final!",]
+        code: ["Em desenvolvimento"]
     }
 ];
 
+
 interface GameBoardProps {
-    initialLevel?: number;
+    startingId?: number;
     onlyLoopWorld?: boolean;
 }
 
-const GameBoard: React.FC<GameBoardProps> = ({ initialLevel = 0, onlyLoopWorld = false }) => {
+const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = false }) => {
     let shownLevels = onlyLoopWorld ? levels.filter(l => l.id >= 10) : levels;
     if (shownLevels.length === 0) {
         shownLevels = onlyLoopWorld ? levels.filter(l => l.id >= 10) : levels;
         if(shownLevels.length === 0) shownLevels = levels;
     }
 
+    const findInitialIndex = () => {
+        const index = shownLevels.findIndex(l => l.id === startingId);
+        return index !== -1 ? index : 0;
+    };
 
-    const [currentLevel, setCurrentLevel] = useState(0);
+    const [currentLevel, setCurrentLevel] = useState(findInitialIndex);
+
     const level = shownLevels[currentLevel];
 
     const [playerPosition, setPlayerPosition] = useState<Position>(level.startPosition);
@@ -327,8 +336,6 @@ const GameBoard: React.FC<GameBoardProps> = ({ initialLevel = 0, onlyLoopWorld =
         );
     };
 
-
-
     const handleReverse = () => {
         if (gameState !== 'playing') return;
         setInventory(prev => [...prev].reverse());
@@ -336,8 +343,6 @@ const GameBoard: React.FC<GameBoardProps> = ({ initialLevel = 0, onlyLoopWorld =
     
     const handleVerify = () => {
         if (gameState !== 'playing') return;
-        const currentTile = level.grid[playerPosition.y][playerPosition.x];
-        if (currentTile !== 10) return;
 
         const isCorrect = JSON.stringify(inventory) === JSON.stringify(level.targetList);
         
@@ -441,7 +446,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ initialLevel = 0, onlyLoopWorld =
             <div className="max-w-6xl mx-auto">
                  <header className="text-center mb-8">
                      <h1 className="text-5xl font-bold text-foreground mb-2 drop-shadow-lg">CIntroduza - Python</h1>
-                     <p className="text-xl text-muted-foreground mb-4">Aprenda listas de forma interativa!</p>
+                     <p className="text-xl text-muted-foreground mb-4">Desenvolva lógica de programação de forma interativa!</p>
                      <div className="inline-block bg-gradient-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold shadow-glow">
                          Fase {level.id}
                      </div>

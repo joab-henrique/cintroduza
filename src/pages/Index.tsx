@@ -43,7 +43,7 @@ const Index = () => {
             <div className="text-2xl mb-4 text-primary-glow font-bold">🎮 Gaming Edition 🎮</div>
             
             <p className="text-xl mb-8 text-gray-100 leading-relaxed max-w-3xl mx-auto">
-              <strong>Transforme programação em diversão!</strong> Domine algoritmos básicos, laços, listas e muito mais 
+              <strong>Transforme programação em diversão!</strong><br></br><strong>Domine a lógica de programação</strong> de algoritmos básicos, laços, listas e muito mais 
               através de desafios gamificados criados especialmente para 
               <span className="text-primary-glow font-bold"> Introdução à Programação do CIn-UFPE</span>
             </p>

@@ -1,27 +1,33 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Trophy, Clock, Target, Star, Zap, Shield, Sword } from "lucide-react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GameBoard from "@/components/GameBoard";
 
-import { useParams } from "react-router-dom";
 interface GameProps {
   world?: string;
 }
+
 const Game = ({ world }: GameProps) => {
-  // Se vier da rota /python/algoritmos ou /python/lacos, usa prop world
-  // Se vier de /python/:level, usa useParams
   const params = useParams();
-    const level = world || params.level; 
-    // Se for algoritmos, mostra só as fases 1-6; se for laços, só as 7+.
-    const onlyLoopWorld = level === "lacos";
+  const level = world || params.level;
+
+  // Define o ID da fase inicial para cada mundo
+  let startingId = 1; // Padrão é a fase 1
+  if (level === "lacos") {
+    startingId = 10;
+  } else if (level === "listas") {
+    startingId = 20; // Para 'listas', queremos começar na fase com ID 20
+  }
+
+  // Define se a lista de fases deve ser filtrada (para mundos avançados)
+  const onlyLoopWorld = level === "lacos" || level === "listas";
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto py-12">
-          <GameBoard onlyLoopWorld={onlyLoopWorld} />
+        {/* Agora passamos o ID da fase, não o índice */}
+        <GameBoard onlyLoopWorld={onlyLoopWorld} startingId={startingId} />
       </main>
       <Footer />
     </div>
