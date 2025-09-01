@@ -10,8 +10,8 @@ const Footer = () => {
             <CardContent className="p-8">
               <div className="text-center space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-primary-glow">Desenvolvido pela</h3>
-                  <h4 className="text-xl font-semibold text-white">Equipe de Monitoria de IP</h4>
+                  <h4 className="text-xl font-semibold text-white">Desenvolvido pela</h4>
+                  <h3 className="text-2xl font-bold text-primary-glow">Equipe de Monitoria de IP</h3>
                   <div className="flex items-center justify-center gap-2 text-gray-300">
                     <span>Com muito carinho ❤</span>
                   </div>
