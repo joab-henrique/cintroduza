@@ -502,7 +502,7 @@ const levels: GameLevel[] = [
     },
 {
     id: 29,
-    title: "Fase 29: O Conto do Condor - A Lógica do Sete",
+    title: "Fase 29: A Lista Perfeita",
     grid: (() => {
         const grid = Array.from({ length: 10 }, () => Array(10).fill(0));
         grid[5][1] = 9;   // Amarelo
