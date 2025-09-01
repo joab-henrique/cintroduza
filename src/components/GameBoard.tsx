@@ -13,6 +13,9 @@ interface GameLevel {
     startPosition: Position;
     targetPath: Position[];
     targetList?: (number | string)[];
+    verificationPosition?: Position;
+    requiredCollections?: number;
+    requiredDiscards?: number;
     code: string[];
     title: string;
 }
@@ -222,7 +225,7 @@ const levels: GameLevel[] = [
 	},
     {
         id: 20,
-        title: "Fase 20: A Lista",
+        title: "Fase 20: O Início da Coleta",
         grid: [
             [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 4, 0, 9, 0, 3, 0, 0], 
@@ -234,7 +237,7 @@ const levels: GameLevel[] = [
             [0, 0, 0, 0, 0, 0, 0, 0]
         ],
         startPosition: { y: 1, x: 0 },
-        targetPath: [{ y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, { y: 1, x: 5 }, { y: 1, x: 6 }, { y: 1, x: 7 }],
+        targetPath: [{ y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, { y: 1, x: 5 }],
         targetList: [4, 9, 3], 
         code: [
             "lista = []",
@@ -242,20 +245,315 @@ const levels: GameLevel[] = [
             "while len(lista) < 3:",
             "    direita()",
             "    if chao != branco:",
-            "        lista.append()",
+            "        lista.append(chao)",
             "",
             "verificar()",
         ]
     },
     {
         id: 21,
-        title: "Fase 21: O Item Indesejado",
-        grid: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 3, 4, 5, 6, 10, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
+        title: "Fase 21: O Último da Fila",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[2][1] = 6;
+            grid[2][3] = 3;
+            grid[2][5] = 5;
+            return grid;
+        })(),
+        startPosition: { y: 2, x: 0 },
+        targetPath: [
+            { y: 2, x: 0 }, { y: 2, x: 1 }, { y: 2, x: 2 }, { y: 2, x: 3 }, 
+            { y: 2, x: 4 }, { y: 2, x: 5 }
+        ],
+        verificationPosition: { y: 2, x: 5 },
+        targetList: [6, 3],
+        requiredCollections: 3,
+        requiredDiscards: 1,
+        code: [
+            "lista = []",
+            "",
+            "for _ in range(3):",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "lista.pop()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 22,
+        title: "Fase 22: O Intruso",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[4][2] = 9;
+            grid[4][4] = 4;
+            grid[4][6] = 3;
+            return grid;
+        })(),
+        startPosition: { y: 4, x: 1 },
+        targetPath: [{ y: 4, x: 1 }, { y: 4, x: 2 }, { y: 4, x: 3 }, { y: 4, x: 4 }, { y: 4, x: 5 }, { y: 4, x: 6 }],
+        verificationPosition: { y: 4, x: 6 },
+        targetList: [9, 3],
+        requiredCollections: 3,
+        requiredDiscards: 1,
+        code: [
+            "lista = []",
+            "",
+            "while len(lista) < 3:",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "lista.remove(1)",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 23,
+        title: "Fase 23: Mundo Invertido",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[1][1] = 3;
+            grid[2][1] = 6;
+            grid[3][1] = 9;
+            return grid;
+        })(),
+        startPosition: { y: 0, x: 1 },
+        targetPath: [{ y: 0, x: 1 }, { y: 1, x: 1 }, { y: 2, x: 1 }, { y: 3, x: 1 }],
+        verificationPosition: { y: 3, x: 1 },
+        targetList: [9, 6, 3],
+        code: [
+            "lista = []",
+            "",
+            "for _ in range(3):",
+            "    baixo()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "lista.reverse()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 24,
+        title: "Fase 24: Colocando a Casa em Ordem",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[5][2] = 5;
+            grid[5][4] = 3;
+            grid[5][6] = 6;
+            return grid;
+        })(),
+        startPosition: { y: 5, x: 1 },
+        targetPath: [{ y: 5, x: 1 }, { y: 5, x: 2 }, { y: 5, x: 3 }, { y: 5, x: 4 }, { y: 5, x: 5 }, { y: 5, x: 6 }],
+        verificationPosition: { y: 5, x: 6 },
+        targetList: [6, 5, 3],
+        code: [
+            "lista = []",
+            "",
+            "while len(lista) < 3:",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "lista.sort()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 25,
+        title: "Fase 25: A Ordem Decrescente",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[3][5] = 4;
+            grid[3][3] = 9;
+            grid[3][1] = 6;
+            return grid;
+        })(),
+        startPosition: { y: 3, x: 0 },
+        targetPath: [{ y: 3, x: 0 }, { y: 3, x: 1 }, { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 }],
+        verificationPosition: { y: 3, x: 5 },
+        targetList: [4, 6, 9],
+        code: [
+            "lista = []",
+            "",
+            "while len(lista) < 3:",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "lista.sort()",
+            "lista.reverse()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 26,
+        title: "Fase 26: A Carga Duplicada",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[6][1] = 3;
+            grid[6][3] = 6;
+            grid[6][5] = 3;
+            grid[6][7] = 9;
+            return grid;
+        })(),
+        startPosition: { y: 6, x: 0 },
+        targetPath: [{ y: 6, x: 0 }, { y: 6, x: 1 }, { y: 6, x: 2 }, { y: 6, x: 3 }, { y: 6, x: 4 }, { y: 6, x: 5 }, { y: 6, x: 6 }, { y: 6, x: 7 }],
+        verificationPosition: { y: 6, x: 7 },
+        targetList: [6, 3, 9],
+        requiredCollections: 4,
+        requiredDiscards: 1,
+        code: [
+            "lista = []",
+            "",
+            "for _ in range(7):",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "lista.remove(0)",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 27,
+        title: "Fase 27: Uma Pedra no Meio do Caminho",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[2][1] = 9;
+            grid[2][2] = 5;
+            grid[2][3] = 3;
+            grid[3][3] = 6;
+            return grid;
+        })(),
+        startPosition: { y: 2, x: 0 },
+        targetPath: [{ y: 2, x: 0 }, { y: 2, x: 1 }, { y: 2, x: 2 }, { y: 2, x: 3 }, { y: 3, x: 3 }, { y: 2, x: 3 }],
+        verificationPosition: { y: 2, x: 3 },
+        targetList: [3, 6],
+        requiredCollections: 3,
+        requiredDiscards: 1,
+        code: [
+            "lista = []",
+            "desvio_ativo = False",
+            "",
+            "direita()",
+            "lista.append(chao)",
+            "direita()",
+            "",
+            "if chao == roxo:",
+            "    lista.pop()",
+            "direita()",
+            "lista.append(chao)",
+            "",
+            "if chao == vermelho:",
+            "    desvio_ativo = True",
+            "",
+            "if desvio_ativo:",
+            "    baixo()",
+            "    lista.append(chao)",
+            "    cima()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 28,
+        title: "Fase 28: A Limpeza Seletiva",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[1][1] = 9;   // Amarelo
+            grid[1][2] = 5;   // Roxo
+            grid[1][3] = 4;   // Laranja
+            grid[1][4] = 3;   // Vermelho
+            grid[1][5] = 6;   // Azul
+            return grid;
+        })(),
         startPosition: { y: 1, x: 0 },
         targetPath: [{ y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, { y: 1, x: 5 }],
-        targetList: [3, 4, 6],
-        code: ["Em desenvolvimento"]
-    }
+        verificationPosition: { y: 1, x: 5 },
+        targetList: [6, 4, 3],
+        requiredCollections: 5,
+        requiredDiscards: 2,
+        code: [
+            "lista = []",
+            "",
+            "for _ in range(5):",
+            "    direita()",
+            "    lista.append(chao)",
+            "",
+            "if amarelo in lista:",
+            "    lista.remove(0)",
+            "    ",
+            "if roxo in lista:",
+            "    lista.remove(0)",
+            "",
+            "lista.sort()",
+            "",
+            "verificar()",
+        ]
+    },
+{
+    id: 29,
+    title: "Fase 29: O Conto do Condor - A Lógica do Sete",
+    grid: (() => {
+        const grid = Array.from({ length: 10 }, () => Array(10).fill(0));
+        grid[5][1] = 9;   // Amarelo
+        grid[5][2] = 5;   // Roxo
+        grid[5][3] = 9;   // Amarelo
+        grid[5][4] = 9;   // Amarelo
+        grid[5][5] = 5;   // Roxo
+        grid[5][6] = 3;   // Vermelho
+        grid[5][7] = 4;   // Laranja
+        grid[5][8] = 6;   // Azul
+        grid[5][9] = 3;   // Vermelho
+        grid[5][10] = 5;  // Roxo
+        return grid;
+    })(),
+    startPosition: { x: 0, y: 5 },
+    targetPath: [
+        { x: 0, y: 5 },
+        { x: 1, y: 5 },
+        { x: 2, y: 5 },
+        { x: 3, y: 5 },
+        { x: 4, y: 5 },
+        { x: 5, y: 5 },
+        { x: 6, y: 5 },
+        { x: 7, y: 5 },
+    ],
+    verificationPosition: { x: 7, y: 5 },
+    targetList: [9, 4, 5, 3],
+    requiredCollections: 7,
+    requiredDiscards: 3,
+    code: [
+        "lista = []",
+        "",
+        "for _ in range(7):",
+        "    direita()",
+        "    if chao != branco:",
+        "        lista.append(chao)",
+        "",
+        "while lista.count(amarelo) > 1:",
+        "    lista.remove(lista.index(amarelo))",
+        "while lista.count(lista.index(roxo)) > 1:",
+        "    lista.remove(lista.index(roxo))",
+        "while lista.count(lista.index(vermelho)) > 1:",
+        "    lista.remove(lista.index(vermelho))",
+        "while lista.count(lista.index(laranja)) > 1:",
+        "    lista.remove(lista.index(laranja))",
+        "",
+        "lista.sort()",
+        "",
+        "verificar()",
+    ]
+}
 ];
 
 
@@ -287,10 +585,15 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
 
     const isListLevel = level.id >= 20;
 
+    const [collectCount, setCollectCount] = useState(0);
+    const [discardCount, setDiscardCount] = useState(0);
+
     const resetGame = useCallback(() => {
         setPlayerPosition(level.startPosition);
         setPlayerPath([level.startPosition]);
         setInventory([]);
+        setCollectCount(0);
+        setDiscardCount(0);
         setGameState('playing');
     }, [level.startPosition]);
 
@@ -303,11 +606,15 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
         const currentTile = level.grid[playerPosition.y][playerPosition.x];
         if (itemColorMap[currentTile]) {
             setInventory(prev => [...prev, currentTile]);
+            setCollectCount(c => c + 1);
         }
     };
 
     const handlePop = () => {
         if (gameState !== 'playing') return;
+        if (inventory.length > 0) {
+            setDiscardCount(c => c + 1);
+        }
         setInventory(prev => prev.slice(0, -1));
     };
     
@@ -325,6 +632,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
         }
 
         setInventory(prev => prev.filter((_, i) => i !== index));
+        setDiscardCount(c => c + 1);
     };
 
     const handleSort = () => {
@@ -344,18 +652,41 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     const handleVerify = () => {
         if (gameState !== 'playing') return;
 
+        if (level.requiredCollections && collectCount < level.requiredCollections) {
+            setGameState('error');
+            setTimeout(() => resetGame(), 800);
+            return;
+        }
+        if (level.requiredDiscards && discardCount < level.requiredDiscards) {
+            setGameState('error');
+            setTimeout(() => resetGame(), 800);
+            return;
+        }
+
+        if (level.verificationPosition) {
+            const atVerificationSpot = 
+                playerPosition.x === level.verificationPosition.x &&
+                playerPosition.y === level.verificationPosition.y;
+
+            if (!atVerificationSpot) {
+                setGameState('error');
+                setTimeout(() => resetGame(), 800);
+                return;
+            }
+        }
+
         const isCorrect = JSON.stringify(inventory) === JSON.stringify(level.targetList);
         
         if (isCorrect) {
             setGameState('success');
             setTimeout(() => {
-                if (currentLevel < shownLevels.length - 1) {
+                if (level.id !== 29 && currentLevel < shownLevels.length - 1) {
                     setCurrentLevel(lvl => lvl + 1);
                 }
             }, 800);
         } else {
             setGameState('error');
-            setTimeout(() => setGameState('playing'), 800);
+            setTimeout(() => resetGame(), 800);
         }
     };
 
@@ -371,18 +702,15 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                 case 'right': newPos.x = (prev.x + 1) % GRID_SIZE; break;
             }
 
-            if (isListLevel) {
-                 setPlayerPath(prevPath => [...prevPath, newPos]);
-                 return newPos;
-            }
-
             const newPlayerPath = [...playerPath, newPos];
             setPlayerPath(newPlayerPath);
-            const nextStepIndex = playerPath.length;
+
+            const currentMoveIndex = newPlayerPath.length - 1;
+
             const isPathCorrect =
-                level.targetPath[nextStepIndex] &&
-                newPos.x === level.targetPath[nextStepIndex].x &&
-                newPos.y === level.targetPath[nextStepIndex].y;
+                level.targetPath[currentMoveIndex] &&
+                newPos.x === level.targetPath[currentMoveIndex].x &&
+                newPos.y === level.targetPath[currentMoveIndex].y;
 
             if (!isPathCorrect) {
                 setGameState('error');
@@ -390,7 +718,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                 return newPos;
             }
 
-            if (newPlayerPath.length === level.targetPath.length) {
+            if (!isListLevel && newPlayerPath.length === level.targetPath.length) {
                 setGameState('success');
                 setTimeout(() => {
                     if (currentLevel < shownLevels.length - 1) {
@@ -473,7 +801,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                         
                         {isListLevel && (
                             <Card className="p-6 bg-gradient-card border-border shadow-card">
-                                <h3 className="text-lg font-semibold text-card-foreground mb-4">Inventário (Sua Lista):</h3>
+                                <h3 className="text-lg font-semibold text-card-foreground mb-4">Sua Lista:</h3>
                                 <div className="bg-muted/20 rounded-lg p-4 flex items-center gap-2 min-h-[60px]">
                                     <span className="font-mono text-muted-foreground">lista = [</span>
                                     {inventory.map((item, index) => (

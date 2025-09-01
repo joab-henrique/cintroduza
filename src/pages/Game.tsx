@@ -16,7 +16,7 @@ const Game = ({ world }: GameProps) => {
   if (level === "lacos") {
     startingId = 10;
   } else if (level === "listas") {
-    startingId = 20; // Para 'listas', queremos começar na fase com ID 20
+    startingId = 20; 
   }
 
   // Define se a lista de fases deve ser filtrada (para mundos avançados)
@@ -26,7 +26,6 @@ const Game = ({ world }: GameProps) => {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto py-12">
-        {/* Agora passamos o ID da fase, não o índice */}
         <GameBoard onlyLoopWorld={onlyLoopWorld} startingId={startingId} />
       </main>
       <Footer />
