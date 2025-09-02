@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Code, Play, BookOpen, Users, Mail, Github, Star, Zap, Trophy, Target } from "lucide-react";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 
 const Index = () => {
   const scrollToLanguages = () => {
