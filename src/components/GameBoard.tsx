@@ -751,22 +751,26 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
 
     const renderGridCell = (row: number, col: number) => {
         const cellValue = level.grid[row][col];
-        let bgColor = 'bg-game-path';
+        let cellClasses = 'bg-game-path'; // Cor de fundo padrão (branco)
 
+        // Determine a cor base da célula
         if (itemColorMap[cellValue]) {
-            bgColor = itemColorMap[cellValue];
-        } else if (cellValue === 10) {
-            bgColor = 'bg-cyan-400';
+            cellClasses = itemColorMap[cellValue];
+        } else if (cellValue === 10) { // Se houver outros tipos de chão específicos
+            cellClasses = 'bg-cyan-400';
         }
-        
-        if (isPlayerPath(col, row) && !isListLevel) {
-             bgColor = 'bg-blue-500';
+
+        // Aplica a cor do caminho percorrido pelo jogador apenas nas células passadas e garante que não é a posição atual
+        if (isPlayerPath(col, row) && !(playerPosition.x === col && playerPosition.y === row) && !isListLevel) {
+            cellClasses = 'bg-blue-500';
         }
-        
+
+        // Se a célula for a posição atual do jogador, dá o destaque
         if (playerPosition.x === col && playerPosition.y === row) {
-            return 'bg-game-player shadow-glow scale-110';
+            return `${cellClasses} bg-game-player shadow-glow scale-110`;
         }
-        return bgColor;
+
+        return cellClasses;
     };
 
     return (
