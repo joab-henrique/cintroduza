@@ -395,7 +395,7 @@ const levels: GameLevel[] = [
     },
     {
         id: 26,
-        title: "Fase 26: A Carga Duplicada",
+        title: "Fase 26: A Carga Vermelha Duplicada",
         grid: (() => {
             const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
             grid[6][1] = 3;
@@ -418,7 +418,10 @@ const levels: GameLevel[] = [
             "    if chao != branco:",
             "        lista.append(chao)",
             "",
-            "lista.remove(0)",
+            "# Na caixa do remove, informe o índice do item",
+            "while lista.count(vermelho) > 1:",
+            "    lista.remove(lista.index(vermelho))",
+
             "",
             "verificar()",
         ]
@@ -479,7 +482,7 @@ const levels: GameLevel[] = [
         startPosition: { y: 1, x: 0 },
         targetPath: [{ y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, { y: 1, x: 5 }],
         verificationPosition: { y: 1, x: 5 },
-        targetList: [6, 4, 3],
+        targetList: [5, 4, 3],
         requiredCollections: 5,
         requiredDiscards: 2,
         code: [
@@ -493,7 +496,7 @@ const levels: GameLevel[] = [
             "    lista.remove(0)",
             "    ",
             "if azul in lista:",
-            "    lista.remove(0)",
+            "    lista.remove(len(lista) - 1)",
             "",
             "lista.sort()",
             "",
@@ -1002,7 +1005,7 @@ const levels: GameLevel[] = [
         title: "Fase 46 - DESAFIO: A Prova do Mestre Recursivo",
         grid: (() => {
             const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
-            grid[3][1] = 5; grid[3][3] = 5; grid[3][5] = 5; 
+            grid[3][1] = 5; grid[3][3] = 4; grid[3][5] = 6; 
             return grid;
         })(),
         startPosition: { y: 3, x: 1 }, // Começa na estação da Haste A
@@ -1029,7 +1032,7 @@ const levels: GameLevel[] = [
             { y: 3, x: 4 }, { y: 3, x: 3 }, { y: 3, x: 2 }, { y: 3, x: 1 },
             { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 }
         ],
-        targetList: [], 
+        targetList: [5, 6, 5, 4, 6, 4, 5, 6, 4, 5, 4, 6, 5, 6],
         verificationPosition: { y: 3, x: 5 },
         code: [
             "def mover(n, A, B, C):",
@@ -1039,8 +1042,11 @@ const levels: GameLevel[] = [
             "",
             "mover(3, 'A', 'B', 'C')",
             "",
-            "# O primeiro roxo é A, segundo é B, terceiro é C",
-            "# Ao chegar no final, use verificar() para validar",
+            "# O roxo é A, laranja é B, azul é C",
+            "# Ao chegar em um ponto, colete-o,",
+            "   independentemente se for início ou",
+            "   fim do movimento, inclusive o spawn.",
+            "# Ao chegar no final, use verificar()",
         ]
     }
 ];
@@ -1174,8 +1180,10 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
         if (isCorrect) {
             setGameState('success');
             setTimeout(() => {
-                if (level.id !== 29 && currentLevel < shownLevels.length - 1) {
+                if (level.id !== 46 && currentLevel < shownLevels.length - 1) {
                     setCurrentLevel(lvl => lvl + 1);
+                } else {
+                    alert("Parabéns! Você completou a última fase disponível e provou ser um verdadeiro Mestre Recursivo!");
                 }
             }, 800);
         } else {
