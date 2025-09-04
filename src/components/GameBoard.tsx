@@ -970,14 +970,14 @@ const levels: GameLevel[] = [
         ]
     },
     {
-        id: 45, // TALVEZ VAI SER A FASE MAIS DIFICIL (DESAFIO)
+        id: 45,
         title: "Fase 45: O Caminho de Fibonacci",
         grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
         startPosition: { y: 1, x: 1 },
         targetPath: [
-            { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, // Direita 3x
-            { y: 2, x: 4 }, { y: 3, x: 4 }, { y: 4, x: 4 }, // Baixo 3x
-            { y: 4, x: 3 }, { y: 4, x: 2 }  // Esquerda 2x
+            { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 },
+            { y: 2, x: 4 }, { y: 3, x: 4 }, { y: 4, x: 4 },
+            { y: 4, x: 3 }, { y: 4, x: 2 }
         ],
         code: [
             "def fibonacci(n):",
@@ -995,6 +995,52 @@ const levels: GameLevel[] = [
             "        baixo()",
             "    else:",
             "        esquerda()",
+        ]
+    },
+    {
+        id: 46,
+        title: "Fase 46 - DESAFIO: A Prova do Mestre Recursivo",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[3][1] = 5; grid[3][3] = 5; grid[3][5] = 5; 
+            return grid;
+        })(),
+        startPosition: { y: 3, x: 1 }, // Começa na estação da Haste A
+        targetPath: [
+            { y: 3, x: 1 }, // Posição inicial (Haste A)
+            // Passo 1: Mover de A para C
+            { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 },
+            // Passo 2: Mover de A para B
+            { y: 3, x: 4 }, { y: 3, x: 3 }, { y: 3, x: 2 }, { y: 3, x: 1 },
+            { y: 3, x: 2 }, { y: 3, x: 3 },
+            // Passo 3: Mover de C para B
+            { y: 3, x: 4 }, { y: 3, x: 5 },
+            { y: 3, x: 4 }, { y: 3, x: 3 },
+            // Passo 4: Mover de A para C
+            { y: 3, x: 2 }, { y: 3, x: 1 },
+            { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 },
+            // Passo 5: Mover de B para A
+            { y: 3, x: 4 }, { y: 3, x: 3 },
+            { y: 3, x: 2 }, { y: 3, x: 1 },
+            // Passo 6: Mover de B para C
+            { y: 3, x: 2 }, { y: 3, x: 3 },
+            { y: 3, x: 4 }, { y: 3, x: 5 },
+            // Passo 7: Mover de A para C
+            { y: 3, x: 4 }, { y: 3, x: 3 }, { y: 3, x: 2 }, { y: 3, x: 1 },
+            { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 }
+        ],
+        targetList: [], 
+        verificationPosition: { y: 3, x: 5 },
+        code: [
+            "def mover(n, A, B, C):",
+            "    if n > 0:",
+            "        mover(n-1, A, C, B)",
+            "        mover(n-1, B, A, C)",
+            "",
+            "mover(3, 'A', 'B', 'C')",
+            "",
+            "# O primeiro roxo é A, segundo é B, terceiro é C",
+            "# Ao chegar no final, use verificar() para validar",
         ]
     }
 ];
@@ -1030,7 +1076,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     [
         20, 21, 22, 23, 24, 25, 26, 27, 28, 29,    // Fases de listas
         34, 35, 39,                                // Fases de funções
-        43, 44                                     // Fase de recursão
+        43, 44, 46                                 // Fase de recursão
     ].includes(level.id);; 
 
     const [collectCount, setCollectCount] = useState(0);
