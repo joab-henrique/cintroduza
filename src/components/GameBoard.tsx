@@ -165,7 +165,7 @@ const levels: GameLevel[] = [
         grid: [[0, 3, 0, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 0, 0], [0, 0, 0, 3, 0, 0, 0, 0], [0, 0, 0, 0, 3, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
         startPosition: { y: 0, x: 0 },
         targetPath: [{ y: 0, x: 0 }, { y: 0, x: 1 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 2, x: 2 }, { y: 2, x: 3 }, { y: 3, x: 3 }, { y: 3, x: 4 }],
-        code: ["for i in range(4):", "    if chao == vermelho:", "        baixo()", "    direita()",]
+        code: ["for _ in range(4):", "    if chao == vermelho:", "        baixo()", "    direita()",]
     },
     {
         id: 17,
@@ -173,7 +173,7 @@ const levels: GameLevel[] = [
         grid: [[3, 3, 3, 0, 0, 0, 0, 0], [0, 0, 0, 3, 3, 3, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
         startPosition: { y: 0, x: 2 },
         targetPath: [{ y: 0, x: 2 }, { y: 0, x: 1 }, { y: 0, x: 0 }, { y: 0, x: 7 }, { y: 7, x: 7 }, { y: 7, x: 0 }],
-        code: ["for i in range(33):", "    if chao == vermelho:", "        esquerda()", "", "cima()", "direita()"]
+        code: ["for _ in range(33):", "    if chao == vermelho:", "        esquerda()", "", "cima()", "direita()"]
     },
     {
         id: 18,
@@ -181,7 +181,7 @@ const levels: GameLevel[] = [
         grid: [[3, 4, 0, 0, 0, 0, 0, 0], [3, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [3, 4, 0, 0, 0, 0, 0, 0], [3, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
         startPosition: { y: 4, x: 1 },
         targetPath: [{ y: 4, x: 1 }, { y: 4, x: 0 }, { y: 3, x: 0 }, { y: 3, x: 1 }, { y: 3, x: 0 }, { y: 2, x: 0 }, { y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 0 }, { y: 0, x: 0 }, { y: 0, x: 1 }, { y: 0, x: 0 }, { y: 7, x: 0 }],
-        code: ["for i in range(5):", "    if chao == vermelho:", "        direita()", "    if chao == laranja:", "        esquerda()", "    cima()",]
+        code: ["for _ in range(5):", "    if chao == vermelho:", "        direita()", "    if chao == laranja:", "        esquerda()", "    cima()",]
     },
     {
 		id: 19,
@@ -272,7 +272,7 @@ const levels: GameLevel[] = [
         code: [
             "lista = []",
             "",
-            "for _ in range(3):",
+            "for _ in range(5):",
             "    direita()",
             "    if chao != branco:",
             "        lista.append(chao)",
@@ -492,7 +492,7 @@ const levels: GameLevel[] = [
             "if amarelo in lista:",
             "    lista.remove(0)",
             "    ",
-            "if roxo in lista:",
+            "if azul in lista:",
             "    lista.remove(0)",
             "",
             "lista.sort()",
@@ -500,60 +500,355 @@ const levels: GameLevel[] = [
             "verificar()",
         ]
     },
-{
-    id: 29,
-    title: "Fase 29: A Lista Perfeita",
-    grid: (() => {
-        const grid = Array.from({ length: 10 }, () => Array(10).fill(0));
-        grid[5][1] = 9;   // Amarelo
-        grid[5][2] = 5;   // Roxo
-        grid[5][3] = 9;   // Amarelo
-        grid[5][4] = 9;   // Amarelo
-        grid[5][5] = 5;   // Roxo
-        grid[5][6] = 3;   // Vermelho
-        grid[5][7] = 4;   // Laranja
-        grid[5][8] = 6;   // Azul
-        grid[5][9] = 3;   // Vermelho
-        grid[5][10] = 5;  // Roxo
-        return grid;
-    })(),
-    startPosition: { x: 0, y: 5 },
-    targetPath: [
-        { x: 0, y: 5 },
-        { x: 1, y: 5 },
-        { x: 2, y: 5 },
-        { x: 3, y: 5 },
-        { x: 4, y: 5 },
-        { x: 5, y: 5 },
-        { x: 6, y: 5 },
-        { x: 7, y: 5 },
-    ],
-    verificationPosition: { x: 7, y: 5 },
-    targetList: [9, 4, 5, 3],
-    requiredCollections: 7,
-    requiredDiscards: 3,
-    code: [
-        "lista = []",
-        "",
-        "for _ in range(7):",
-        "    direita()",
-        "    if chao != branco:",
-        "        lista.append(chao)",
-        "",
-        "while lista.count(amarelo) > 1:",
-        "    lista.remove(lista.index(amarelo))",
-        "while lista.count(lista.index(roxo)) > 1:",
-        "    lista.remove(lista.index(roxo))",
-        "while lista.count(lista.index(vermelho)) > 1:",
-        "    lista.remove(lista.index(vermelho))",
-        "while lista.count(lista.index(laranja)) > 1:",
-        "    lista.remove(lista.index(laranja))",
-        "",
-        "lista.sort()",
-        "",
-        "verificar()",
-    ]
-}
+    {
+        id: 29,
+        title: "Fase 29: A Lista Perfeita",
+        grid: (() => {
+            const grid = Array.from({ length: 10 }, () => Array(10).fill(0));
+            grid[5][1] = 9;   // Amarelo
+            grid[5][2] = 5;   // Roxo
+            grid[5][3] = 9;   // Amarelo
+            grid[5][4] = 9;   // Amarelo
+            grid[5][5] = 5;   // Roxo
+            grid[5][6] = 3;   // Vermelho
+            grid[5][7] = 4;   // Laranja
+            grid[5][8] = 6;   // Azul
+            grid[5][9] = 3;   // Vermelho
+            grid[5][10] = 5;  // Roxo
+            return grid;
+        })(),
+        startPosition: { x: 0, y: 5 },
+        targetPath: [
+            { x: 0, y: 5 },
+            { x: 1, y: 5 },
+            { x: 2, y: 5 },
+            { x: 3, y: 5 },
+            { x: 4, y: 5 },
+            { x: 5, y: 5 },
+            { x: 6, y: 5 },
+            { x: 7, y: 5 },
+        ],
+        verificationPosition: { x: 7, y: 5 },
+        targetList: [9, 4, 5, 3],
+        requiredCollections: 7,
+        requiredDiscards: 3,
+        code: [
+            "lista = []",
+            "",
+            "for _ in range(7):",
+            "    direita()",
+            "    if chao != branco:",
+            "        lista.append(chao)",
+            "",
+            "# Na caixa do remove, informe o índice do item",
+            "while lista.count(amarelo) > 1:",
+            "    lista.remove(lista.index(amarelo))",
+            "while lista.count(lista.index(roxo)) > 1:",
+            "    lista.remove(lista.index(roxo))",
+            "while lista.count(lista.index(vermelho)) > 1:",
+            "    lista.remove(lista.index(vermelho))",
+            "while lista.count(lista.index(laranja)) > 1:",
+            "    lista.remove(lista.index(laranja))",
+            "",
+            "lista.sort()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 30,
+        title: "Fase 30: O Encanto da Repetição",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            return grid;
+        })(),
+        startPosition: { y: 2, x: 0 },
+        targetPath: [
+            { y: 2, x: 0 }, { y: 2, x: 1 }, { y: 2, x: 2 }, { y: 2, x: 3 }, { y: 2, x: 4 },
+            { y: 3, x: 4 }, { y: 4, x: 4 },
+            { y: 4, x: 5 }, { y: 4, x: 6 }, { y: 4, x: 7 }
+        ],
+        code: [
+            "def andar_direita():",
+            "    direita()",
+            "    direita()",
+            "    direita()",
+            "",
+            "andar_direita()",
+            "direita()",
+            "baixo()",
+            "baixo()",
+            "andar_direita()",
+        ]
+    },
+    {
+        id: 31,
+        title: "Fase 31: O Teleporte Funcional",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            return grid;
+        })(),
+        startPosition: { y: 2, x: 3 },
+        targetPath: [
+            { y: 2, x: 3 }, { y: 2, x: 2 }, { y: 2, x: 1 }, { y: 2, x: 0 },
+            { y: 3, x: 0 }, { y: 4, x: 0 }, { y: 4, x: 7 }, { y: 4, x: 6 }
+        ],
+        code: [
+            "def mover_esquerda(vezes):",
+            "    for _ in range(vezes):",
+            "        esquerda()",
+            "",
+            "mover_esquerda(3)",
+            "baixo()",
+            "baixo()",
+            "mover_esquerda(2)",
+        ]
+    },
+    {
+        id: 32,
+        title: "Fase 32: O Oráculo Numérico",
+        grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
+        startPosition: { y: 3, x: 1 },
+        targetPath: [{ y: 3, x: 1 }, { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }],
+        code: [
+            "def passos_para_andar():",
+            "    return 3",
+            "",
+            "def mover(vezes):",
+            "    for _ in range(vezes):",
+            "        direita()",
+            "",
+            "quantidade = passos_para_andar()",
+            "mover(quantidade)",
+        ]
+    },
+    {
+        id: 33,
+        title: "Fase 33: A Sentinela Booleana",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[2][2] = 5;
+            return grid;
+        })(),
+        startPosition: { y: 4, x: 2 },
+        targetPath: [{ y: 4, x: 2 }, { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 2, x: 3 }, { y: 1, x: 3 }],
+        code: [
+            "def parede_a_frente():",
+            "    if chao_a_frente == roxo:",
+            "        return True",
+            "    else:",
+            "        return False",
+            "",
+            "for _ in range(4):",
+            "    if parede_a_frente():",
+            "        direita()",
+            "    else:",
+            "        cima()",
+        ]
+    },
+    {
+        id: 34,
+        title: "Fase 34: A Colheita Automatizada",
+        grid: [
+            [0,0,0,0,0,0,0,0],
+            [0,4,4,0,3,3,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+        ],
+        startPosition: { y: 1, x: 0 },
+        targetPath: [
+            { y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, { y: 1, x: 5 }
+        ],
+        targetList: [4, 4, 3, 3],
+        verificationPosition: { y: 1, x: 5 },
+        code: [
+            "lista = []",
+            "",
+            "def coletar_dois_itens():",
+            "    direita()",
+            "    lista.append(chao)",
+            "    direita()",
+            "    lista.append(chao)",
+            "",
+            "coletar_dois_itens()",
+            "direita()",
+            "coletar_dois_itens()",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 35,
+        title: "Fase 35: A Receita do Mago",
+        grid: [
+            [0,0,0,0,0,0,0,0],
+            [0,3,4,6,9,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0],
+        ],
+        startPosition: { y: 1, x: 0 },
+        targetPath: [ { y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 } ],
+        targetList: [3, 6, 9],
+        verificationPosition: { y: 1, x: 4 },
+        code: [
+            "def pegar_item():",
+            "    return [vermelho, amarelo, azul]",
+            "",
+            "lista = []",
+            "",
+            "for _ in range(4):",
+            "    direita()",
+            "    if chao in pegar_item():",
+            "        lista.append(chao)",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 36,
+        title: "Fase 36: O Passo Opcional",
+        grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
+        startPosition: { y: 7, x: 1 },
+        targetPath: [
+            { y: 7, x: 1 },
+            { y: 6, x: 1 }, { y: 5, x: 1 }, { y: 4, x: 1 }, { y: 3, x: 1 },
+            { y: 3, x: 2 },
+            { y: 3, x: 3 },
+            { y: 4, x: 3 }, { y: 5, x: 3 }, { y: 6, x: 3 }, { y: 7, x: 3 }, 
+            { y: 7, x: 2 }
+        ],
+        code: [
+            "def mover(direcao, passos=1):",
+            "    for _ in range(passos):",
+            "        if direcao == 'cima':",
+            "            cima()",
+            "        elif direcao == 'direita':",
+            "            direita()",
+            "        elif direcao == 'baixo':",
+            "            baixo()",
+            "        elif direcao == 'esquerda':",
+            "            esquerda()",
+            "",
+            "mover('cima', 4)",
+            "mover('direita')",
+            "mover('direita')",
+            "mover('baixo', 4)",
+            "mover('esquerda')",
+        ]
+    },
+    {
+        id: 37,
+        title: "Fase 37: O Navegador Automático",
+        grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
+        startPosition: { y: 6, x: 2 },
+        targetPath: [
+            { y: 6, x: 2 }, { y: 6, x: 3 }, { y: 6, x: 4 },
+            { y: 5, x: 4 }, { y: 4, x: 4 },
+            { y: 4, x: 3 }
+        ],
+        code: [
+            "mapa_do_tesouro = ['direita', 'direita',",
+            "                   'cima', 'cima', 'esquerda']",
+            "",
+            "def seguir_mapa(mapa):",
+            "    for direcao in mapa:",
+            "        if direcao == 'direita':",
+            "            direita()",
+            "        elif direcao == 'cima':",
+            "            cima()",
+            "        elif direcao == 'esquerda':",
+            "            esquerda()",
+            "",
+            "seguir_mapa(mapa_do_tesouro)",
+        ]
+    },
+    {
+        id: 38,
+        title: "Fase 38: Gasparzinho e o Contador de Passos ",
+        grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
+        startPosition: { y: 1, x: 1 },
+        targetPath: [{ y: 1, x: 1 }, { y: 2, x: 1 }, { y: 3, x: 1 }, { y: 4, x: 1 }, { y: 5, x: 1 }],
+        code: [
+            "passos = 1",
+            "",
+            "def somar_passos_fixos():",
+            "    passos = 3",
+            "    return 0;",
+            "",
+            "def somar_passos(quantidade):",
+            "    return quantidade + 2",
+            "",
+            "passos += somar_passos_fixos()",
+            "passos += somar_passos(passos)",
+            "",
+            "for _ in range(passos):",
+            "    baixo()",
+        ]
+    },
+    {
+        id: 39,
+        title: "Fase 39 - DESAFIO: O Legado do Programador",
+        grid: [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 3, 0, 4, 0, 9, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 5, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 6, 0, 0, 0, 3, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0]
+        ],
+        startPosition: { y: 1, x: 0 },
+        targetPath: [
+            { y: 1, x: 0 },
+            { y: 1, x: 1 },
+            { y: 2, x: 1 }, { y: 3, x: 1 },
+            { y: 2, x: 1 }, { y: 1, x: 1 },
+            { y: 1, x: 2 }, { y: 1, x: 3 },
+            { y: 1, x: 4 }, { y: 1, x: 5 },
+            { y: 2, x: 5 }, { y: 3, x: 5 }, { y: 4, x: 5 }, { y: 5, x: 5 },
+            { y: 5, x: 4 }, { y: 5, x: 3 }, { y: 5, x: 2 }, { y: 5, x: 1 }
+        ],
+        targetList: [3, 4, 9, 3, 6],
+        verificationPosition: { y: 5, x: 1 },
+        code: [
+            "tesouros_verdadeiros = [vermelho, laranja,",
+            "                        amarelo, azul]",
+            "mapa = [['direita', 1], ['baixo', 2],",
+            "        ['direita', 2], ['direita', 2],",
+            "        ['baixo', 4], ['esquerda', 4]]",
+            "lista = []",
+            "",
+            "def buscar_tesouro(direcao, passos):",
+            "    for _ in range(passos):",
+            "        if direcao == 'direita': direita()",
+            "        elif direcao == 'baixo': baixo()",
+            "        elif direcao == 'esquerda': esquerda()",
+            "    ",
+            "    if chao in tesouros_verdadeiros:",
+            "        lista.append(chao)",
+            "    else:",
+            "        for _ in range(passos):",
+            "            if direcao == 'direita': esquerda()",
+            "            elif direcao == 'baixo': cima()",
+            "            elif direcao == 'esquerda': direita()",
+            "",
+            "for instrucao in mapa:",
+            "    direcao_mapa = instrucao[0]",
+            "    passos_mapa = instrucao[1]",
+            "    buscar_tesouro(direcao_mapa, passos_mapa)",
+            "",
+            "verificar()",
+        ]
+    }
 ];
 
 
@@ -583,7 +878,11 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     const [gameState, setGameState] = useState<'playing' | 'success' | 'error'>('playing');
     const [inventory, setInventory] = useState<(number | string)[]>([]);
 
-    const isListLevel = level.id >= 20;
+    const isListLevel =               // Isso define as fases que possuem listas
+    [
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29,    // Fases de listas
+        34, 35, 39                                 // Fases de funções
+    ].includes(level.id);; 
 
     const [collectCount, setCollectCount] = useState(0);
     const [discardCount, setDiscardCount] = useState(0);

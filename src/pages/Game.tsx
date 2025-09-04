@@ -17,6 +17,8 @@ const Game = ({ world }: GameProps) => {
     startingId = 10;
   } else if (level === "listas") {
     startingId = 20; 
+  } else if (level === "funcoes") {
+    startingId = 30; 
   }
 
   // Define se a lista de fases deve ser filtrada (para mundos avançados)

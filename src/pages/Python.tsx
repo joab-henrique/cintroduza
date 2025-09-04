@@ -125,7 +125,7 @@ const Python = () => {
                       <div className="text-3xl">🌀</div>
                     </div>
                     <CardTitle className="text-xl mb-2 group-hover:text-python transition-colors">Laços de Repetição</CardTitle>
-                    <CardDescription className="text-sm">Dominando for, while e loops avançados</CardDescription>
+                    <CardDescription className="text-sm">Domine repetições com for e while</CardDescription>
                   </CardHeader>
                   <CardContent className="text-center space-y-4 relative z-10">
                     <div className="grid grid-cols-1 gap-4">
@@ -161,6 +161,31 @@ const Python = () => {
                     </div>
                     <div className="bg-java/10 rounded-lg p-3 group-hover:bg-java/20 transition-colors duration-300">
                       <div className="flex items-center justify-center gap-2 text-java font-semibold">
+                        <span>Entrar no Mundo</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link to="/python/funcoes" className="group">
+                <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-c-lang/20 hover:border-c-lang/60 animate-slide-up">
+                  <div className="absolute inset-0 bg-gradient-c opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <CardHeader className="text-center pb-4 relative z-10">
+                    <div className="w-20 h-20 mx-auto mb-4 bg-gradient-c rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow-c-lang">
+                      <div className="text-3xl">⚙️</div>
+                    </div>
+                    <CardTitle className="text-xl mb-2 group-hover:text-c-lang transition-colors">Funções</CardTitle>
+                    <CardDescription className="text-sm">Domine a arte de reutilizar código</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center space-y-4 relative z-10">
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="bg-gradient-card rounded-lg p-3 border border-border">
+                        <div className="text-2xl font-bold text-c-lang">10</div>
+                        <p className="text-xs text-muted-foreground">Fases</p>
+                      </div>
+                    </div>
+                    <div className="bg-c-lang/10 rounded-lg p-3 group-hover:bg-c-lang/20 transition-colors duration-300">
+                      <div className="flex items-center justify-center gap-2 text-c-lang font-semibold">
                         <span>Entrar no Mundo</span>
                       </div>
                     </div>
