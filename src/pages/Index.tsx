@@ -16,9 +16,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
-        {/* Animated background elements */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-20 w-32 h-32 bg-primary-glow rounded-full blur-3xl animate-float"></div>
           <div className="absolute top-40 right-32 w-24 h-24 bg-python rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
@@ -42,12 +40,12 @@ const Index = () => {
                 CIn<span className="text-primary-glow animate-pulse">troduza</span>
               </h1>
             </div>
-            <div className="text-2xl mb-4 text-primary-glow font-bold">🎮 Gaming Edition 🎮</div>
+            <div className="text-2xl mb-4 font-bold">🎮 Gaming Edition 🎮</div>
             
             <p className="text-xl mb-8 text-gray-100 leading-relaxed max-w-3xl mx-auto">
               <strong>Transforme programação em diversão!</strong><br></br><strong>Domine a lógica de programação</strong> de algoritmos básicos, laços, listas e muito mais 
               através de desafios gamificados criados especialmente para 
-              <span className="text-primary-glow font-bold"> Introdução à Programação do CIn-UFPE</span>
+              <strong> Introdução à Programação do CIn-UFPE</strong>
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-sm">
@@ -74,14 +72,16 @@ const Index = () => {
               size="lg" 
               className="text-xl px-12 py-6 rounded-xl"
             >
-              <Play className="mr-3 w-6 h-6" />
-              🚀 Começar Aventura!
+              <div className="animate-pulse flex items-center">
+                <Play className="mr-3 w-6 h-6" />
+                  Começar Aventura! 🚀
+              </div>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Languages Section */}
+      {/* Opções de Linguagem */}
       <section id="languages" className="py-20 bg-background relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-slide-up">
@@ -91,7 +91,7 @@ const Index = () => {
           
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
-              {/* Python - Active */}
+              {/* Python - Funcionando */}
               <Link to="/python" className="group">
                 <Card className="cursor-pointer hover:shadow-neon transition-all duration-500 border-python bg-gradient-python text-white transform hover:scale-110 hover:-translate-y-2 animate-slide-up">
                   <CardHeader className="text-center relative">
@@ -115,7 +115,7 @@ const Index = () => {
                 </Card>
               </Link>
 
-              {/* Java - Coming Soon */}
+              {/* Java - Em Breve */}
               <Card className="opacity-60 cursor-not-allowed relative overflow-hidden group animate-slide-up" style={{animationDelay: '0.2s'}}>
                 <div className="absolute inset-0 bg-gradient-java opacity-20"></div>
                 <CardHeader className="text-center relative z-10">
@@ -132,7 +132,7 @@ const Index = () => {
                 </CardHeader>
               </Card>
 
-              {/* C - Coming Soon */}
+              {/* C - Em Breve */}
               <Card className="opacity-60 cursor-not-allowed relative overflow-hidden group animate-slide-up" style={{animationDelay: '0.4s'}}>
                 <div className="absolute inset-0 bg-gradient-c opacity-20"></div>
                 <CardHeader className="text-center relative z-10">
@@ -153,7 +153,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About CIn Section */}
+      {/* Sobre o CIn */}
       <section className="py-20 bg-gradient-dark text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
