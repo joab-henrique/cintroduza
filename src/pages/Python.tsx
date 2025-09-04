@@ -41,7 +41,7 @@ const Python = () => {
       title: "⚡ Funções",
       description: "Criação e otimização de funções",
       icon: Zap,
-      phases: 5,
+      phases: 10,
       color: "bg-gradient-c",
       emoji: "🛠️"
     },
@@ -50,7 +50,7 @@ const Python = () => {
       title: "🌪️ Recursão",
       description: "Algoritmos recursivos e suas magias",
       icon: RotateCcw,
-      phases: 4,
+      phases: 10,
       color: "bg-gradient-gaming",
       emoji: "🧙‍♂️"
     },
@@ -99,7 +99,7 @@ const Python = () => {
                       <div className="text-3xl">🚀</div>
                     </div>
                     <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">Algoritmos Básicos e Condicionais</CardTitle>
-                    <CardDescription className="text-sm">Fundamentos e lógica de programação</CardDescription>
+                    <CardDescription className="text-sm">Fundamentos de lógica de programação</CardDescription>
                   </CardHeader>
                   <CardContent className="text-center space-y-4 relative z-10">
                     <div className="grid grid-cols-1 gap-4">
@@ -142,6 +142,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
+              {/* Botão Listas */}
               <Link to="/python/listas" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-java/20 hover:border-java/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-java opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -167,6 +168,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
+              {/* Botão Funções */}
               <Link to="/python/funcoes" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-c-lang/20 hover:border-c-lang/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-c opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -186,6 +188,32 @@ const Python = () => {
                     </div>
                     <div className="bg-c-lang/10 rounded-lg p-3 group-hover:bg-c-lang/20 transition-colors duration-300">
                       <div className="flex items-center justify-center gap-2 text-c-lang font-semibold">
+                        <span>Entrar no Mundo</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+              {/* Botão Recursão */}
+              <Link to="/python/recursao" className="group">
+                <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-recursao/20 hover:border-recursao/60 animate-slide-up">
+                  <div className="absolute inset-0 bg-gradient-dark opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <CardHeader className="text-center pb-4 relative z-10">
+                    <div className="w-20 h-20 mx-auto mb-4 bg-gradient-dark rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-glow-recursao">
+                      <div className="text-3xl">🌪️</div>
+                    </div>
+                    <CardTitle className="text-xl mb-2 group-hover:text-recursao transition-colors">Recursão</CardTitle>
+                    <CardDescription className="text-sm">Resolva problemas complexos com elegância</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center space-y-4 relative z-10">
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="bg-gradient-card rounded-lg p-3 border border-border">
+                        <div className="text-2xl font-bold text-recursao">10</div>
+                        <p className="text-xs text-muted-foreground">Fases</p>
+                      </div>
+                    </div>
+                    <div className="bg-recursao/10 rounded-lg p-3 group-hover:bg-recursao/20 transition-colors duration-300">
+                      <div className="flex items-center justify-center gap-2 text-recursao font-semibold">
                         <span>Entrar no Mundo</span>
                       </div>
                     </div>

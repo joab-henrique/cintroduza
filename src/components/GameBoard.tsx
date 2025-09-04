@@ -24,7 +24,7 @@ const GRID_SIZE = 8;
 
 const itemColorMap: { [key: number]: string } = {
     3: 'bg-red-500',
-    4: 'bg-orange-500', // Verde agora é Laranja
+    4: 'bg-orange-500',
     5: 'bg-purple-500',
     6: 'bg-blue-500',
     9: 'bg-yellow-400',
@@ -32,7 +32,7 @@ const itemColorMap: { [key: number]: string } = {
 
 const itemNameMap: { [key: number]: string } = {
     3: 'vermelho',
-    4: 'laranja', // Verde agora é Laranja
+    4: 'laranja',
     5: 'roxo',
     6: 'azul',
     9: 'amarelo',
@@ -848,6 +848,154 @@ const levels: GameLevel[] = [
             "",
             "verificar()",
         ]
+    },
+    {
+        id: 40,
+        title: "Fase 40: O Eco no Corredor",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[3][6] = 5;
+            return grid;
+        })(),
+        startPosition: { y: 3, x: 1 },
+        targetPath: [{ y: 3, x: 1 }, { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 }, { y: 3, x: 6 }],
+        code: [
+            "def andar():",
+            "    if chao != roxo:",
+            "        direita()",
+            "        andar()",
+            "",
+            "andar()",
+        ]
+    },
+    {
+        id: 41,
+        title: "Fase 41: A Contagem Regressiva",
+        grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
+        startPosition: { y: 5, x: 1 },
+        targetPath: [{ y: 5, x: 1 }, { y: 5, x: 2 }, { y: 5, x: 3 }, { y: 5, x: 4 }, { y: 5, x: 5 }],
+        code: [
+            "def mover_recursivo(passos):",
+            "    if passos == 0:",
+            "        return",
+            "",
+            "    direita()",
+            "    mover_recursivo(passos - 1)",
+            "",
+            "mover_recursivo(4)",
+        ]
+    },
+    {
+        id: 42,
+        title: "Fase 42: O Zigue-Zague Eterno",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[1][5] = 3;
+            return grid;
+        })(),
+        startPosition: { y: 4, x: 2 },
+        targetPath: [
+            { y: 4, x: 2 }, { y: 3, x: 2 }, { y: 3, x: 3 },
+            { y: 2, x: 3 }, { y: 2, x: 4 },
+            { y: 1, x: 4 }, { y: 1, x: 5 }
+        ],
+        code: [
+            "def zig():",
+            "    cima()",
+            "    if chao != vermelho:",
+            "        zag()",
+            "",
+            "def zag():",
+            "    direita()",
+            "    if chao != vermelho:",
+            "        zig()",
+            "",
+            "zig()",
+        ]
+    },
+    {
+        id: 43,
+        title: "Fase 43: A Matrioska de Dados",
+        grid: [[0,0,0,0,0,0,0,0], [0,3,4,5,6,9,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0]],
+        startPosition: { y: 1, x: 0 },
+        targetPath: [{ y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }],
+        targetList: [3, 4, 5],
+        verificationPosition: { y: 1, x: 4 },
+        code: [
+            "lista = []",
+            "",
+            "def construir_lista(n):",
+            "    direita()",
+            "    if n > 0:",
+            "        lista.append(chao)",
+            "        construir_lista(n - 1)",
+            "",
+            "construir_lista(3)",
+            "",
+            "verificar()",
+        ]
+    },
+    {
+        id: 44,
+        title: "Fase 44: A Exploração da Sabedoria Absoluta",
+        grid: (() => {
+            const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
+            grid[5][2] = 5;
+            grid[4][2] = 4;
+            grid[5][3] = 6;
+            return grid;
+        })(),
+        startPosition: { y: 6, x: 2 },
+        targetPath: [
+            { y: 6, x: 2 }, { y: 5, x: 2 },
+            { y: 4, x: 2 }, { y: 5, x: 2 },
+            { y: 5, x: 3 }, { y: 5, x: 2 }
+        ],
+        targetList: [4, 6],
+        verificationPosition: { y: 5, x: 2 },
+        code: [
+            "lista = []",
+            "",
+            "def explorar():",
+            "    if chao == laranja or chao == azul:",
+            "        lista.append(chao)",
+            "",
+            "    if chao == roxo:",
+            "        cima(); explorar(); baixo()",
+            "        direita(); explorar(); esquerda()",
+            "",
+            "cima()",
+            "explorar()",
+            "verificar()",
+        ]
+    },
+    {
+        id: 45, // TALVEZ VAI SER A FASE MAIS DIFICIL (DESAFIO)
+        title: "Fase 45: O Caminho de Fibonacci",
+        grid: Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0)),
+        startPosition: { y: 1, x: 1 },
+        targetPath: [
+            { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 1, x: 3 }, { y: 1, x: 4 }, // Direita 3x
+            { y: 2, x: 4 }, { y: 3, x: 4 }, { y: 4, x: 4 }, // Baixo 3x
+            { y: 4, x: 3 }, { y: 4, x: 2 }  // Esquerda 2x
+        ],
+        code: [
+            "def fibonacci(n):",
+            "    if n <= 1:",
+            "        return n",
+            "    else:",
+            "        return fibonacci(n-1) + fibonacci(n-2)",
+            "",
+            "total_de_passos = fibonacci(6)",
+            "",
+            "for i in range(total_de_passos):",
+            "    if i < 3:",
+            "        direita()",
+            "    elif i < 6:",
+            "        baixo()",
+            "    else:",
+            "        esquerda()",
+        ]
     }
 ];
 
@@ -878,10 +1026,11 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     const [gameState, setGameState] = useState<'playing' | 'success' | 'error'>('playing');
     const [inventory, setInventory] = useState<(number | string)[]>([]);
 
-    const isListLevel =               // Isso define as fases que possuem listas
+    const isListLevel =                            // Isso define as fases que possuem listas
     [
         20, 21, 22, 23, 24, 25, 26, 27, 28, 29,    // Fases de listas
-        34, 35, 39                                 // Fases de funções
+        34, 35, 39,                                // Fases de funções
+        43, 44                                     // Fase de recursão
     ].includes(level.id);; 
 
     const [collectCount, setCollectCount] = useState(0);
@@ -1072,15 +1221,23 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
         return cellClasses;
     };
 
+    const getWorldColorClass = (levelId: number): string => {
+        if (levelId >= 40) return 'bg-gradient-dark'
+        if (levelId >= 30) return 'bg-gradient-c';      // Funções
+        if (levelId >= 20) return 'bg-gradient-java';   // Listas
+        if (levelId >= 10) return 'bg-gradient-python'; // Laços
+        return 'bg-gradient-primary';                   // Algoritmos (Padrão)
+    };
+
     return (
         <div className="min-h-screen bg-gradient-animated bg-[length:400%_400%] animate-gradient-shift p-4">
             <div className="max-w-6xl mx-auto">
                  <header className="text-center mb-8">
                      <h1 className="text-5xl font-bold text-foreground mb-2 drop-shadow-lg">CIntroduza - Python</h1>
                      <p className="text-xl text-muted-foreground mb-4">Desenvolva lógica de programação de forma interativa!</p>
-                     <div className="inline-block bg-gradient-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold shadow-glow">
-                         Fase {level.id}
-                     </div>
+                     <div className={`inline-block ${getWorldColorClass(level.id)} text-primary-foreground px-4 py-2 rounded-lg font-semibold shadow-glow`}>
+                        Fase {level.id}
+                    </div>
                  </header>
 
                 <div className="grid lg:grid-cols-2 gap-8">

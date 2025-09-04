@@ -60,6 +60,10 @@ export default {
 					DEFAULT: 'hsl(var(--c-lang))',
 					foreground: 'hsl(var(--c-lang-foreground))'
 				},
+				recursao: {
+					DEFAULT: 'hsl(var(--recursao))',
+					foreground: 'hsl(var(--recursao-foreground))'
+				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'

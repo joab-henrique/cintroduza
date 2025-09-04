@@ -41,6 +41,10 @@ All colors MUST be HSL.
     --c-lang: 207 90% 54%;
     --c-lang-foreground: 0 0% 98%;
 
+    /* Recursão   Dark red */
+    --recursao: 0 60% 25%;
+    --recursao-foreground: 0 0% 100%;
+
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
