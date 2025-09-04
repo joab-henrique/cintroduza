@@ -208,7 +208,7 @@ const Python = () => {
                   <CardContent className="text-center space-y-4 relative z-10">
                     <div className="grid grid-cols-1 gap-4">
                       <div className="bg-gradient-card rounded-lg p-3 border border-border">
-                        <div className="text-2xl font-bold text-recursao">10</div>
+                        <div className="text-2xl font-bold text-recursao">7</div>
                         <p className="text-xs text-muted-foreground">Fases</p>
                       </div>
                     </div>
