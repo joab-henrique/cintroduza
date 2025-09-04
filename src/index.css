@@ -45,6 +45,12 @@ All colors MUST be HSL.
     --recursao: 0 60% 25%;
     --recursao-foreground: 0 0% 100%;
 
+    --tuplas-e-dicionarios: 259 95% 63%;
+    --tuplas-e-dicionarios-foreground: 0 0% 100%;
+    --gradient-tuplas-e-dicionarios: linear-gradient(135deg, hsl(259 95% 53%), hsl(259 95% 73%));
+    --shadow-glow-tuplas-e-dicionarios: 0 0 40px hsl(259 95% 73% / 0.5);
+    --shadow-neon-tuplas-e-dicionarios: 0 0 20px hsl(259 95% 63% / 0.8), 0 0 40px hsl(259 95% 63% / 0.6), 0 0 60px hsl(259 95% 63% / 0.4);
+
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
@@ -123,6 +129,12 @@ All colors MUST be HSL.
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
+    --tuplas-e-dicionarios: 259 85% 70%;
+    --tuplas-e-dicionarios-foreground: 0 0% 100%;
+    --gradient-tuplas-e-dicionarios: linear-gradient(135deg, hsl(259 85% 60%), hsl(259 85% 80%));
+    --shadow-glow-tuplas-e-dicionarios: 0 0 40px hsl(259 85% 80% / 0.5);
+    --shadow-neon-tuplas-e-dicionarios: 0 0 20px hsl(259 85% 70% / 0.8), 0 0 40px hsl(259 85% 70% / 0.6), 0 0 60px hsl(259 85% 70% / 0.4);
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;

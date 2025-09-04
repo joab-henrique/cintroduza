@@ -64,6 +64,10 @@ export default {
 					DEFAULT: 'hsl(var(--recursao))',
 					foreground: 'hsl(var(--recursao-foreground))'
 				},
+				'tuplas-e-dicionarios': {
+                    DEFAULT: 'hsl(var(--tuplas-e-dicionarios))',
+                    foreground: 'hsl(var(--tuplas-e-dicionarios-foreground))'
+                },
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'

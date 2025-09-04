@@ -124,9 +124,11 @@ const Index = () => {
                   </div>
                   <CardTitle className="text-3xl font-bold text-muted-foreground">Java</CardTitle>
                   <CardDescription>Em Breve...</CardDescription>
-                  <div className="absolute top-0 right-0 bg-warning rounded-bl-lg px-2 py-1">
-                    <span className="text-xs font-bold">EM BREVE</span>
+                  <div className="absolute inset-0 flex items-center justify-center top-20">
+                  <div className="bg-black/70 text-white font-bold text-lg px-6 py-2 rounded-lg border-2 border-yellow-400 -rotate-12 shadow-lg">
+                    EM BREVE
                   </div>
+                </div>
                 </CardHeader>
               </Card>
 
@@ -139,9 +141,11 @@ const Index = () => {
                   </div>
                   <CardTitle className="text-3xl font-bold text-muted-foreground">C++</CardTitle>
                   <CardDescription>Em Breve...</CardDescription>
-                  <div className="absolute top-0 right-0 bg-warning rounded-bl-lg px-2 py-1">
-                    <span className="text-xs font-bold">EM BREVE</span>
+                  <div className="absolute inset-0 flex items-center justify-center top-20">
+                  <div className="bg-black/70 text-white font-bold text-lg px-6 py-2 rounded-lg border-2 border-yellow-400 -rotate-12 shadow-lg">
+                    EM BREVE
                   </div>
+                </div>
                 </CardHeader>
               </Card>
             </div>

@@ -220,6 +220,41 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
+
+              {/* Botão Tuplas e Dicionários (EM BREVE) */}
+              <div className="group relative animate-slide-up"> {/* O Link foi trocado por um div */}
+                {/* Card com efeitos de desativado */}
+                <Card className="h-full transition-all duration-500 cursor-not-allowed opacity-60 grayscale">
+                  <CardHeader className="text-center pb-4 relative z-10">
+                    <div className="w-20 h-20 mx-auto mb-4 bg-gradient-tuplas-e-dicionarios rounded-2xl flex items-center justify-center shadow-glow-tuplas-e-dicionarios">
+                      <div className="text-3xl">🗃️</div>
+                    </div>
+                    <CardTitle className="text-xl mb-2 text-tuplas-e-dicionarios">Tuplas & Dicionários</CardTitle>
+                    <CardDescription className="text-sm">Organizando dados com chave-valor</CardDescription>
+                  </CardHeader>
+                  <CardContent className="text-center space-y-4 relative z-10">
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="bg-gradient-card rounded-lg p-3 border border-border">
+                        <div className="text-2xl font-bold text-tuplas-e-dicionarios">X</div>
+                        <p className="text-xs text-muted-foreground">Fases</p>
+                      </div>
+                    </div>
+                    <div className="bg-tuplas-e-dicionarios/10 rounded-lg p-3">
+                      <div className="flex items-center justify-center gap-2 text-tuplas-e-dicionarios font-semibold">
+                        <span>Entrar no Mundo</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                {/* Selo "EM BREVE" */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-black/70 text-white font-bold text-lg px-6 py-2 rounded-lg border-2 border-yellow-400 -rotate-12 shadow-lg">
+                    EM BREVE
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </section>
