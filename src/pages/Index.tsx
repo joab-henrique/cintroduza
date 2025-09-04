@@ -16,7 +16,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden py-16">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-20 w-32 h-32 bg-primary-glow rounded-full blur-3xl animate-float"></div>
           <div className="absolute top-40 right-32 w-24 h-24 bg-python rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
@@ -36,19 +36,19 @@ const Index = () => {
                 </div>
               </div>
               
-              <h1 className="text-7xl font-bold bg-gradient-to-r from-white via-primary-glow to-white bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-white via-primary-glow to-white bg-clip-text text-transparent">
                 CIn<span className="text-primary-glow animate-pulse">troduza</span>
               </h1>
             </div>
-            <div className="text-2xl mb-4 font-bold">🎮 Gaming Edition 🎮</div>
+            <div className="text-xl md:text-2xl mb-4 font-bold">🎮 Gaming Edition 🎮</div>
             
-            <p className="text-xl mb-8 text-gray-100 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl mb-8 text-gray-100 leading-relaxed max-w-3xl mx-auto">
               <strong>Transforme programação em diversão!</strong><br></br><strong>Domine a lógica de programação</strong> de algoritmos básicos, laços, listas e muito mais 
               através de desafios gamificados criados especialmente para 
               <strong> Introdução à Programação do CIn-UFPE</strong>
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16 text-sm">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
                 <Target className="w-8 h-8 mx-auto mb-2 text-primary-glow" />
                 <div className="font-semibold">Sistema de Níveis</div>
