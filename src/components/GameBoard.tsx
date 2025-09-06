@@ -1455,7 +1455,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                                 {isListLevel ? (
                                     <div>
                                         <p className="mb-2">
-                                            Mova-se pelo grid e use os comandos para manipular sua lista!
+                                            Mova-se pelo grid com as setas e use os comandos para manipular sua lista!
                                         </p>
                                         <div className="text-g text-left inline-block bg-muted/50 p-2 rounded-md border">
                                             <div className="flex items-center gap-2">
@@ -1485,7 +1485,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                                         </div>
                                     </div>
                                 ) : (
-                                    <p>Use as setas para mover o pontinho e seguir o código!</p>
+                                    <p>Use as setas para mover o personagem seguindo o código!</p>
                                 )}
                             </div>
                         </Card>
