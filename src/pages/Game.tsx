@@ -11,8 +11,7 @@ const Game = ({ world }: GameProps) => {
   const params = useParams();
   const level = world || params.level;
 
-  // Define o ID da fase inicial para cada mundo
-  let startingId = 1; // Padrão é a fase 1
+  let startingId = 1; // Default
   if (level === "lacos") {
     startingId = 10;
   } else if (level === "listas") {
@@ -23,7 +22,7 @@ const Game = ({ world }: GameProps) => {
     startingId = 40; 
   }
 
-  // Define se a lista de fases deve ser filtrada (para mundos avançados)
+  // Fix this (deprecated app)
   const onlyLoopWorld = level === "lacos" || level === "listas";
 
   return (

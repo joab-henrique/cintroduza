@@ -6,11 +6,13 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// THIS PAGE IS OBSOLETE FOR NOW!!!
+
 const Level = () => {
   const { language, level } = useParams();
   const [selectedPhase, setSelectedPhase] = useState<number | null>(null);
 
-  // Mock data for demonstration
+  // Mock data for demonstration - Obsolete
   const levelData = {
     algoritmos: {
       title: "🎯 Algoritmos Básicos",
@@ -62,7 +64,7 @@ const Level = () => {
     return <div>Nível não encontrado</div>;
   }
 
-  // Todas as fases sempre liberadas
+  // All stages always released (for now)
   const phases = Array.from({ length: currentLevel.phases }, (_, i) => ({
     number: i + 1,
     title: `Boss Battle ${i + 1}`,
@@ -81,7 +83,6 @@ const Level = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Header */}
       <header className={`${currentLevel.color} text-white py-16 relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-24 h-24 bg-white rounded-full blur-3xl animate-float"></div>
@@ -129,7 +130,7 @@ const Level = () => {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                 <Zap className="w-8 h-8 mx-auto mb-2 text-green-300" />
-                {/* ...removido progresso e XP... */}
+                {/* Coming soon, here's something about progress and XP */}
               </div>
             </div>
           </div>
@@ -247,7 +248,7 @@ const Level = () => {
         </section>
       )}
 
-  {/* ...removido estatísticas e progresso... */}
+  {/* ... estatísticas e progresso... */}
 
       <Footer />
     </div>

@@ -28,7 +28,7 @@ All colors MUST be HSL.
     --secondary: 0 60% 25%;
     --secondary-foreground: 0 0% 98%;
 
-    /* Python Green (keeping for contrast) */
+    /* Python Green */
     --python: 142 71% 45%;
     --python-foreground: 0 0% 98%;
     --python-light: 142 71% 55%;
@@ -41,10 +41,11 @@ All colors MUST be HSL.
     --c-lang: 207 90% 54%;
     --c-lang-foreground: 0 0% 98%;
 
-    /* Recursão   Dark red */
+    /* Recursion - (adjust to English) Dark red */
     --recursao: 0 60% 25%;
     --recursao-foreground: 0 0% 100%;
 
+    /* Tuples and Dictionaries (adjust to English) Purple */
     --tuplas-e-dicionarios: 259 95% 63%;
     --tuplas-e-dicionarios-foreground: 0 0% 100%;
     --gradient-tuplas-e-dicionarios: linear-gradient(135deg, hsl(259 95% 53%), hsl(259 95% 73%));

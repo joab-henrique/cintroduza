@@ -32,7 +32,7 @@ const Python = () => {
       title: "📋 Listas",
       description: "Coletando e manipulando dados",
       icon: List,
-      phases: 10,
+      phases: 20,
       color: "bg-gradient-java",
       emoji: "📊"
     },
@@ -41,7 +41,7 @@ const Python = () => {
       title: "⚡ Funções",
       description: "Criação e otimização de funções",
       icon: Zap,
-      phases: 10,
+      phases: 30,
       color: "bg-gradient-c",
       emoji: "🛠️"
     },
@@ -50,11 +50,11 @@ const Python = () => {
       title: "🌪️ Recursão",
       description: "Algoritmos recursivos e suas magias",
       icon: RotateCcw,
-      phases: 10,
+      phases: 40,
       color: "bg-gradient-gaming",
       emoji: "🧙‍♂️"
     },
-    {
+    { // Adjust for tuples and dictionaries
       id: "estruturas",
       title: "🗃️ Tuplas & Dicionários",
       description: "Estruturas de dados complexas",
@@ -90,7 +90,7 @@ const Python = () => {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* Botão Algoritmos Básicos */}
+              {/* Algorithms and Conditional Button */}
               <Link to="/python/algoritmos" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-primary/20 hover:border-primary/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-primary opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -116,7 +116,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
-              {/* Botão Laços de Repetição */}
+              {/* Loops Button */}
               <Link to="/python/lacos" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-python/20 hover:border-python/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-python opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -142,7 +142,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
-              {/* Botão Listas */}
+              {/* Lists Button */}
               <Link to="/python/listas" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-java/20 hover:border-java/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-java opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -168,7 +168,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
-              {/* Botão Funções */}
+              {/* Functions Button */}
               <Link to="/python/funcoes" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-c-lang/20 hover:border-c-lang/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-c opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -194,7 +194,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
               </Link>
-              {/* Botão Recursão */}
+              {/* Recursion Button */}
               <Link to="/python/recursao" className="group">
                 <Card className="h-full hover:shadow-neon transition-all duration-500 hover:scale-105 cursor-pointer relative overflow-hidden border-2 border-recursao/20 hover:border-recursao/60 animate-slide-up">
                   <div className="absolute inset-0 bg-gradient-dark opacity-5 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -221,9 +221,9 @@ const Python = () => {
                 </Card>
               </Link>
 
-              {/* Botão Tuplas e Dicionários (EM BREVE) */}
-              <div className="group relative animate-slide-up"> {/* O Link foi trocado por um div */}
-                {/* Card com efeitos de desativado */}
+              {/* Tuples and Dictionaries Button */}
+              <div className="group relative animate-slide-up">
+                {/* Desactived */}
                 <Card className="h-full transition-all duration-500 cursor-not-allowed opacity-60 grayscale">
                   <CardHeader className="text-center pb-4 relative z-10">
                     <div className="w-20 h-20 mx-auto mb-4 bg-gradient-tuplas-e-dicionarios rounded-2xl flex items-center justify-center shadow-glow-tuplas-e-dicionarios">
@@ -247,7 +247,7 @@ const Python = () => {
                   </CardContent>
                 </Card>
                 
-                {/* Selo "EM BREVE" */}
+                {/* Stamp "SOON" */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-black/70 text-white font-bold text-lg px-6 py-2 rounded-lg border-2 border-yellow-400 -rotate-12 shadow-lg">
                     EM BREVE

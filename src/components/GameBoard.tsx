@@ -162,15 +162,33 @@ const levels: GameLevel[] = [
     {
         id: 16,
         title: "Fase 16: O Desvio Diagonal",
-        grid: [[0, 3, 0, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 0, 0], [0, 0, 0, 3, 0, 0, 0, 0], [0, 0, 0, 0, 3, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
+        grid: [
+                [0, 3, 0, 0, 0, 0, 0, 0],
+                [0, 0, 3, 0, 0, 0, 0, 0],
+                [0, 0, 0, 3, 0, 0, 0, 0],
+                [0, 0, 0, 0, 3, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0]
+            ],
         startPosition: { y: 0, x: 0 },
         targetPath: [{ y: 0, x: 0 }, { y: 0, x: 1 }, { y: 1, x: 1 }, { y: 1, x: 2 }, { y: 2, x: 2 }, { y: 2, x: 3 }, { y: 3, x: 3 }, { y: 3, x: 4 }],
         code: ["for _ in range(4):", "    if chao == vermelho:", "        baixo()", "    direita()",]
     },
     {
         id: 17,
-        title: "Fase 17: A Fuga para a Borda",
-        grid: [[3, 3, 3, 0, 0, 0, 0, 0], [0, 0, 0, 3, 3, 3, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
+        title: "Fase 17: A Fuga to a Borda",
+        grid: [
+                [3, 3, 3, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 3, 3, 3, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0]
+            ],
         startPosition: { y: 0, x: 2 },
         targetPath: [{ y: 0, x: 2 }, { y: 0, x: 1 }, { y: 0, x: 0 }, { y: 0, x: 7 }, { y: 7, x: 7 }, { y: 7, x: 0 }],
         code: ["for _ in range(33):", "    if chao == vermelho:", "        esquerda()", "", "cima()", "direita()"]
@@ -178,7 +196,16 @@ const levels: GameLevel[] = [
     {
         id: 18,
         title: "Fase 18: A Dança das Cores",
-        grid: [[3, 4, 0, 0, 0, 0, 0, 0], [3, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [3, 4, 0, 0, 0, 0, 0, 0], [3, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]],
+        grid: [
+                [3, 4, 0, 0, 0, 0, 0, 0], 
+                [3, 4, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0],
+                [3, 4, 0, 0, 0, 0, 0, 0], 
+                [3, 4, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0], 
+                [0, 0, 0, 0, 0, 0, 0, 0]
+            ],
         startPosition: { y: 4, x: 1 },
         targetPath: [{ y: 4, x: 1 }, { y: 4, x: 0 }, { y: 3, x: 0 }, { y: 3, x: 1 }, { y: 3, x: 0 }, { y: 2, x: 0 }, { y: 1, x: 0 }, { y: 1, x: 1 }, { y: 1, x: 0 }, { y: 0, x: 0 }, { y: 0, x: 1 }, { y: 0, x: 0 }, { y: 7, x: 0 }],
         code: ["for _ in range(5):", "    if chao == vermelho:", "        direita()", "    if chao == laranja:", "        esquerda()", "    cima()",]
@@ -472,11 +499,11 @@ const levels: GameLevel[] = [
         title: "Fase 28: A Limpeza Seletiva",
         grid: (() => {
             const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(0));
-            grid[1][1] = 9;   // Amarelo
-            grid[1][2] = 5;   // Roxo
-            grid[1][3] = 4;   // Laranja
-            grid[1][4] = 3;   // Vermelho
-            grid[1][5] = 6;   // Azul
+            grid[1][1] = 9;   // Yellow
+            grid[1][2] = 5;   // Purple
+            grid[1][3] = 4;   // Orange
+            grid[1][4] = 3;   // Red
+            grid[1][5] = 6;   // Blue
             return grid;
         })(),
         startPosition: { y: 1, x: 0 },
@@ -508,16 +535,16 @@ const levels: GameLevel[] = [
         title: "Fase 29: A Lista Perfeita",
         grid: (() => {
             const grid = Array.from({ length: 10 }, () => Array(10).fill(0));
-            grid[5][1] = 9;   // Amarelo
-            grid[5][2] = 5;   // Roxo
-            grid[5][3] = 9;   // Amarelo
-            grid[5][4] = 9;   // Amarelo
-            grid[5][5] = 5;   // Roxo
-            grid[5][6] = 3;   // Vermelho
-            grid[5][7] = 4;   // Laranja
-            grid[5][8] = 6;   // Azul
-            grid[5][9] = 3;   // Vermelho
-            grid[5][10] = 5;  // Roxo
+            grid[5][1] = 9;   // Yellow
+            grid[5][2] = 5;   // Purple
+            grid[5][3] = 9;   // Yellow
+            grid[5][4] = 9;   // Yellow
+            grid[5][5] = 5;   // Purple
+            grid[5][6] = 3;   // Red
+            grid[5][7] = 4;   // Orange
+            grid[5][8] = 6;   // Blue
+            grid[5][9] = 3;   // Red
+            grid[5][10] = 5;  // Purple
             return grid;
         })(),
         startPosition: { x: 0, y: 5 },
@@ -614,14 +641,14 @@ const levels: GameLevel[] = [
         startPosition: { y: 3, x: 1 },
         targetPath: [{ y: 3, x: 1 }, { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }],
         code: [
-            "def passos_para_andar():",
+            "def passos_to_andar():",
             "    return 3",
             "",
             "def mover(vezes):",
             "    for _ in range(vezes):",
             "        direita()",
             "",
-            "quantidade = passos_para_andar()",
+            "quantidade = passos_to_andar()",
             "mover(quantidade)",
         ]
     },
@@ -1008,27 +1035,27 @@ const levels: GameLevel[] = [
             grid[3][1] = 5; grid[3][3] = 4; grid[3][5] = 6; 
             return grid;
         })(),
-        startPosition: { y: 3, x: 1 }, // Começa na estação da Haste A
+        startPosition: { y: 3, x: 1 }, // Starts in position A
         targetPath: [
-            { y: 3, x: 1 }, // Posição inicial (Haste A)
-            // Passo 1: Mover de A para C
+            { y: 3, x: 1 }, // Initial position (A)
+            // Step 1: Move from A to C
             { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 },
-            // Passo 2: Mover de A para B
+            // Step 2: Move from A to B
             { y: 3, x: 4 }, { y: 3, x: 3 }, { y: 3, x: 2 }, { y: 3, x: 1 },
             { y: 3, x: 2 }, { y: 3, x: 3 },
-            // Passo 3: Mover de C para B
+            // Step 3: Move from C to B
             { y: 3, x: 4 }, { y: 3, x: 5 },
             { y: 3, x: 4 }, { y: 3, x: 3 },
-            // Passo 4: Mover de A para C
+            // Step 4: Move from A to C
             { y: 3, x: 2 }, { y: 3, x: 1 },
             { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 },
-            // Passo 5: Mover de B para A
+            // Step 5: Move from B to A
             { y: 3, x: 4 }, { y: 3, x: 3 },
             { y: 3, x: 2 }, { y: 3, x: 1 },
-            // Passo 6: Mover de B para C
+            // Step 6: Move from B to C
             { y: 3, x: 2 }, { y: 3, x: 3 },
             { y: 3, x: 4 }, { y: 3, x: 5 },
-            // Passo 7: Mover de A para C
+            // Step 7: Move from A to C
             { y: 3, x: 4 }, { y: 3, x: 3 }, { y: 3, x: 2 }, { y: 3, x: 1 },
             { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }, { y: 3, x: 5 }
         ],
@@ -1078,11 +1105,11 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     const [gameState, setGameState] = useState<'playing' | 'success' | 'error'>('playing');
     const [inventory, setInventory] = useState<(number | string)[]>([]);
 
-    const isListLevel =                            // Isso define as fases que possuem listas
+    const isListLevel =                            // This define the levels that have lists
     [
-        20, 21, 22, 23, 24, 25, 26, 27, 28, 29,    // Fases de listas
-        34, 35, 39,                                // Fases de funções
-        43, 44, 46                                 // Fase de recursão
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29,    // Lists phases
+        34, 35, 39,                                // Functions phases
+        43, 44, 46                                 // Recursion phases
     ].includes(level.id);; 
 
     const [collectCount, setCollectCount] = useState(0);
@@ -1183,7 +1210,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                 if (level.id !== 46 && currentLevel < shownLevels.length - 1) {
                     setCurrentLevel(lvl => lvl + 1);
                 } else {
-                    alert("Parabéns! Você completou a última fase disponível e provou ser um verdadeiro Mestre Recursivo!");
+                    alert("tobéns! Você completou a última fase disponível e provou ser um verdadeiro Mestre Recursivo!");
                 }
             }, 800);
         } else {
@@ -1253,21 +1280,21 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
 
     const renderGridCell = (row: number, col: number) => {
         const cellValue = level.grid[row][col];
-        let cellClasses = 'bg-game-path'; // Cor de fundo padrão (branco)
+        let cellClasses = 'bg-game-path'; // Background color default (white)
 
-        // Determine a cor base da célula
+        // Determine the base color of the cell
         if (itemColorMap[cellValue]) {
             cellClasses = itemColorMap[cellValue];
-        } else if (cellValue === 10) { // Se houver outros tipos de chão específicos
+        } else if (cellValue === 10) { // If there are other specific floor types
             cellClasses = 'bg-cyan-400';
         }
 
-        // Aplica a cor do caminho percorrido pelo jogador apenas nas células passadas e garante que não é a posição atual
+        // Apply the color of the path taken by the player only to the cells passed and ensures that it is not the current position
         if (isPlayerPath(col, row) && !(playerPosition.x === col && playerPosition.y === row) && !isListLevel) {
             cellClasses = 'bg-blue-500';
         }
 
-        // Se a célula for a posição atual do jogador, dá o destaque
+        // If the cell is the player's current position, it highlights it
         if (playerPosition.x === col && playerPosition.y === row) {
             return `${cellClasses} bg-game-player shadow-glow scale-110`;
         }
@@ -1276,11 +1303,11 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     };
 
     const getWorldColorClass = (levelId: number): string => {
-        if (levelId >= 40) return 'bg-gradient-dark'
-        if (levelId >= 30) return 'bg-gradient-c';      // Funções
-        if (levelId >= 20) return 'bg-gradient-java';   // Listas
-        if (levelId >= 10) return 'bg-gradient-python'; // Laços
-        return 'bg-gradient-primary';                   // Algoritmos (Padrão)
+        if (levelId >= 40) return 'bg-gradient-dark'    // Recursion
+        if (levelId >= 30) return 'bg-gradient-c';      // Functions
+        if (levelId >= 20) return 'bg-gradient-java';   // Lists
+        if (levelId >= 10) return 'bg-gradient-python'; // Loops
+        return 'bg-gradient-primary';                   // Algoritms
     };
 
     return (
@@ -1332,7 +1359,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
 
                     <div className="space-y-6">
                         <Card className="p-6 bg-gradient-card border-border shadow-card">
-                            <h3 className="text-lg font-semibold text-card-foreground mb-4">Código para Executar:</h3>
+                            <h3 className="text-lg font-semibold text-card-foreground mb-4">Código to Executar:</h3>
                             <div className="bg-muted/20 rounded-lg p-4 font-mono text-sm" style={{ whiteSpace: 'pre' }}>
                                 {level.code.map((line, index) => <div key={index} className="py-1 px-2 rounded text-card-foreground">{`${index + 1}. ${line}`}</div>)}
                             </div>
@@ -1370,7 +1397,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                                 </div>
                             )}
                              <p className="mt-4 text-center text-sm text-muted-foreground">
-                                {isListLevel ? "Mova-se pelo grid e use os comandos para manipular sua lista!" : "Use as setas para mover o pontinho e seguir o código!"}
+                                {isListLevel ? "Mova-se pelo grid e use os comandos to manipular sua lista!" : "Use as setas to mover o pontinho e seguir o código!"}
                             </p>
                         </Card>
                     </div>

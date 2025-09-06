@@ -86,7 +86,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Opções de Linguagem */}
+      {/* Languages Options */}
       <section id="languages" className="py-20 bg-background relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-slide-up">
@@ -96,7 +96,7 @@ const Index = () => {
           
           <div className="flex justify-center">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
-              {/* Python - Funcionando */}
+              {/* Python - Working */}
               <Link to="/python" className="group">
                 <Card className="cursor-pointer hover:shadow-neon transition-all duration-500 border-python bg-gradient-python text-white transform hover:scale-110 hover:-translate-y-2 animate-slide-up">
                   <CardHeader className="text-center relative">
@@ -120,7 +120,7 @@ const Index = () => {
                 </Card>
               </Link>
 
-              {/* Java - Em Breve */}
+              {/* Java - Soon */}
               <Card className="opacity-60 cursor-not-allowed relative overflow-hidden group animate-slide-up" style={{animationDelay: '0.2s'}}>
                 <div className="absolute inset-0 bg-gradient-java opacity-20"></div>
                 <CardHeader className="text-center relative z-10">
@@ -137,7 +137,7 @@ const Index = () => {
                 </CardHeader>
               </Card>
 
-              {/* C - Em Breve */}
+              {/* C - Soon */}
               <Card className="opacity-60 cursor-not-allowed relative overflow-hidden group animate-slide-up" style={{animationDelay: '0.4s'}}>
                 <div className="absolute inset-0 bg-gradient-c opacity-20"></div>
                 <CardHeader className="text-center relative z-10">
@@ -158,7 +158,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Sobre o CIn */}
+      {/* About CIn */}
       <section className="py-20 bg-gradient-dark text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
