@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback} from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, RotateCcw, Home, CheckCircle } from 'lucide-react';
-import { Zap, Trash2, ArrowDownUp, RefreshCw, MinusCircle } from 'lucide-react';
+import { Zap, Trash2, ArrowDownUp, RefreshCw, MinusCircle, Eye, EyeOff } from 'lucide-react';
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 type Position = { x: number; y: number };
@@ -905,14 +905,14 @@ const levels: GameLevel[] = [
         startPosition: { y: 5, x: 1 },
         targetPath: [{ y: 5, x: 1 }, { y: 5, x: 2 }, { y: 5, x: 3 }, { y: 5, x: 4 }, { y: 5, x: 5 }],
         code: [
-            "def mover_recursivo(passos):",
+            "def mover(passos):",
             "    if passos == 0:",
             "        return",
             "",
             "    direita()",
-            "    mover_recursivo(passos - 1)",
+            "    mover(passos - 1)",
             "",
-            "mover_recursivo(4)",
+            "mover(4)",
         ]
     },
     {
@@ -986,7 +986,7 @@ const levels: GameLevel[] = [
         code: [
             "lista = []",
             "",
-            "def explorar():",
+            "def explorar(chao):",
             "    if chao == laranja or chao == azul:",
             "        lista.append(chao)",
             "",
@@ -995,7 +995,7 @@ const levels: GameLevel[] = [
             "        direita(); explorar(); esquerda()",
             "",
             "cima()",
-            "explorar()",
+            "explorar(chao)",
             "verificar()",
         ]
     },
@@ -1104,6 +1104,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     const [playerPath, setPlayerPath] = useState<Position[]>([level.startPosition]);
     const [gameState, setGameState] = useState<'playing' | 'success' | 'error'>('playing');
     const [inventory, setInventory] = useState<(number | string)[]>([]);
+    const [areArrowsVisible, setAreArrowsVisible] = useState(true);
 
     const isListLevel =                            // This define the levels that have lists
     [
@@ -1148,7 +1149,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     const handleRemove = () => {
         if (gameState !== 'playing' || inventory.length === 0) return;
 
-        const indexStr = window.prompt("Qual índice você quer remover?", "0");
+        const indexStr = window.prompt("Qual índice você quer remover?", "Informe o índice");
         if (indexStr === null) return;
 
         const index = parseInt(indexStr, 10);
@@ -1210,7 +1211,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                 if (level.id !== 46 && currentLevel < shownLevels.length - 1) {
                     setCurrentLevel(lvl => lvl + 1);
                 } else {
-                    alert("tobéns! Você completou a última fase disponível e provou ser um verdadeiro Mestre Recursivo!");
+                    alert("Parabéns! Você completou a última fase disponível e provou ser um verdadeiro Mestre Recursivo!");
                 }
             }, 800);
         } else {
@@ -1266,17 +1267,44 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (gameState !== 'playing') return;
+
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(event.key)) {
+                event.preventDefault();
+            }
+
             switch (event.key) {
-                case 'ArrowUp': event.preventDefault(); movePlayer('up'); break;
-                case 'ArrowDown': event.preventDefault(); movePlayer('down'); break;
-                case 'ArrowLeft': event.preventDefault(); movePlayer('left'); break;
-                case 'ArrowRight': event.preventDefault(); movePlayer('right'); break;
-                default: break;
+                case 'ArrowUp': movePlayer('up'); break;
+                case 'ArrowDown': movePlayer('down'); break;
+                case 'ArrowLeft': movePlayer('left'); break;
+                case 'ArrowRight': movePlayer('right'); break;
+
+                case 'a':
+                    if (isListLevel) handleAppend();
+                    break;
+                case 'p':
+                    if (isListLevel) handlePop();
+                    break;
+                case 's':
+                    if (isListLevel) handleSort();
+                    break;
+                case 'r':
+                    if (isListLevel) handleReverse();
+                    break;
+                case 'd':
+                    if (isListLevel) handleRemove();
+                    break;
+                case ' ':
+                    if (isListLevel) handleVerify();
+                    break;
+                
+                default:
+                    break;
             }
         };
+        
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [movePlayer, gameState]);
+    }, [gameState, movePlayer, isListLevel, handleAppend, handlePop, handleSort, handleReverse, handleRemove, handleVerify]);
 
     const renderGridCell = (row: number, col: number) => {
         const cellValue = level.grid[row][col];
@@ -1366,17 +1394,41 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                         </Card>
                         
                         <Card className="p-6 bg-gradient-card border-border shadow-card">
-                             <h3 className="text-lg font-semibold text-card-foreground mb-4">Controles:</h3>
+                            <div className="flex justify-between items-center mb-4">
+                                <h3 className="text-lg font-semibold text-card-foreground">
+                                    Controles:
+                                </h3>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setAreArrowsVisible(prev => !prev)}
+                                    className="text-muted-foreground hidden md:inline-flex">
+                                    {areArrowsVisible ? (
+                                        <>
+                                            <EyeOff className="w-4 h-4 mr-2" />
+                                            Esconder Setas
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Eye className="w-4 h-4 mr-2" />
+                                            Mostrar Setas
+                                        </>
+                                    )}
+                                </Button>
+                            </div>
+
                             {isListLevel ? (
                                 <div>
-                                    <div className="grid grid-cols-3 gap-2 max-w-48 mx-auto mb-6">
-                                        <div></div>
-                                        <Button variant="outline" size="lg" onClick={() => movePlayer('up')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronUp className="w-6 h-6" /></Button>
-                                        <div></div>
-                                        <Button variant="outline" size="lg" onClick={() => movePlayer('left')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronLeft className="w-6 h-6" /></Button>
-                                        <Button variant="outline" size="lg" onClick={() => movePlayer('down')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronDown className="w-6 h-6" /></Button>
-                                        <Button variant="outline" size="lg" onClick={() => movePlayer('right')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronRight className="w-6 h-6" /></Button>
-                                    </div>
+                                    {areArrowsVisible && (
+                                        <div className="grid grid-cols-3 gap-2 max-w-48 mx-auto mb-6">
+                                            <div></div>
+                                            <Button variant="outline" size="lg" onClick={() => movePlayer('up')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronUp className="w-6 h-6" /></Button>
+                                            <div></div>
+                                            <Button variant="outline" size="lg" onClick={() => movePlayer('left')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronLeft className="w-6 h-6" /></Button>
+                                            <Button variant="outline" size="lg" onClick={() => movePlayer('down')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronDown className="w-6 h-6" /></Button>
+                                            <Button variant="outline" size="lg" onClick={() => movePlayer('right')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronRight className="w-6 h-6" /></Button>
+                                        </div>
+                                    )}
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                                         <Button onClick={handleAppend} disabled={gameState !== 'playing'} className="flex items-center gap-2 bg-green-600 hover:bg-green-700"> <Zap className="w-4 h-4"/> append() </Button>
                                         <Button onClick={handlePop} disabled={gameState !== 'playing'} className="flex items-center gap-2 bg-red-600 hover:bg-red-700"> <Trash2 className="w-4 h-4"/> pop() </Button>
@@ -1387,18 +1439,55 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                                     </div>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-3 gap-2 max-w-48 mx-auto">
-                                     <div></div>
-                                     <Button variant="outline" size="lg" onClick={() => movePlayer('up')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronUp className="w-6 h-6" /></Button>
-                                     <div></div>
-                                     <Button variant="outline" size="lg" onClick={() => movePlayer('left')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronLeft className="w-6 h-6" /></Button>
-                                     <Button variant="outline" size="lg" onClick={() => movePlayer('down')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronDown className="w-6 h-6" /></Button>
-                                     <Button variant="outline" size="lg" onClick={() => movePlayer('right')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronRight className="w-6 h-6" /></Button>
-                                </div>
+                                areArrowsVisible && (
+                                    <div className="grid grid-cols-3 gap-2 max-w-48 mx-auto">
+                                        <div></div>
+                                        <Button variant="outline" size="lg" onClick={() => movePlayer('up')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronUp className="w-6 h-6" /></Button>
+                                        <div></div>
+                                        <Button variant="outline" size="lg" onClick={() => movePlayer('left')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronLeft className="w-6 h-6" /></Button>
+                                        <Button variant="outline" size="lg" onClick={() => movePlayer('down')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronDown className="w-6 h-6" /></Button>
+                                        <Button variant="outline" size="lg" onClick={() => movePlayer('right')} disabled={gameState !== 'playing'} className="border-border hover:bg-secondary h-12"><ChevronRight className="w-6 h-6" /></Button>
+                                    </div>
+                                )
                             )}
-                             <p className="mt-4 text-center text-sm text-muted-foreground">
-                                {isListLevel ? "Mova-se pelo grid e use os comandos to manipular sua lista!" : "Use as setas to mover o pontinho e seguir o código!"}
-                            </p>
+                            
+                            <div className="mt-4 text-center text-sm text-muted-foreground">
+                                {isListLevel ? (
+                                    <div>
+                                        <p className="mb-2">
+                                            Mova-se pelo grid e use os comandos para manipular sua lista!
+                                        </p>
+                                        <div className="text-g text-left inline-block bg-muted/50 p-2 rounded-md border">
+                                            <div className="flex items-center gap-2">
+                                                <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">A</kbd>
+                                                <span>- <b>append():</b> Adiciona o item do chão à lista.</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">P</kbd>
+                                                <span>- <b>pop():</b> Remove o último item da lista.</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">S</kbd>
+                                                <span>- <b>sort():</b> Organiza a lista.</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">R</kbd>
+                                                <span>- <b>reverse():</b> Inverte a ordem da lista.</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">D</kbd>
+                                                <span>- <b>remove():</b> Remove um item pelo índice.</span>
+                                            </div>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-20 text-center">ESPAÇO</kbd>
+                                                <span>- <b>verificar():</b> Verifica se a lista está correta.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <p>Use as setas para mover o pontinho e seguir o código!</p>
+                                )}
+                            </div>
                         </Card>
                     </div>
                 </div>
