@@ -133,7 +133,12 @@ const levels: GameLevel[] = [
         grid: (() => { const grid = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(0)); grid[0][0] = 4; for (let i = 1; i < 6; i++) grid[i][0] = 3; grid[6][0] = 4; for (let i = 1; i < 6; i++) grid[6][i] = 3; grid[6][6] = 4; return grid; })(),
         startPosition: { x: 0, y: 0 },
         targetPath: [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 3 }, { x: 0, y: 4 }, { x: 0, y: 5 }, { x: 0, y: 6 }, { x: 1, y: 6 }, { x: 2, y: 6 }, { x: 3, y: 6 }, { x: 4, y: 6 }, { x: 5, y: 6 }, { x: 6, y: 6 }],
-        code: ["while chao == vermelho:", "    baixo()", "direita()", "while chao == vermelho:", "    direita()",]
+        code: ["if chao == laranja:",
+            "    baixo()",
+            "while chao == vermelho:",
+            "    baixo()",
+            "while chao == laranja or chao == vermelho:",
+            "    direita()",]
     },
     {
         id: 13,
