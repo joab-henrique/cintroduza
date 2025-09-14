@@ -338,7 +338,7 @@ const levels: GameLevel[] = [
             "    if chao != branco:",
             "        lista.append(chao)",
             "",
-            "lista.remove(1)",
+            "lista.remove(laranja)",
             "",
             "verificar()",
         ]
@@ -450,9 +450,9 @@ const levels: GameLevel[] = [
             "    if chao != branco:",
             "        lista.append(chao)",
             "",
-            "# Na caixa do remove, informe o índice do item",
+            "# Na caixa do pop, informe o índice do item",
             "while lista.count(vermelho) > 1:",
-            "    lista.remove(lista.index(vermelho))",
+            "    lista.pop(lista.index(vermelho))",
 
             "",
             "verificar()",
@@ -525,12 +525,10 @@ const levels: GameLevel[] = [
             "    lista.append(chao)",
             "",
             "if amarelo in lista:",
-            "    lista.remove(0)",
+            "    lista.remove(amarelo)",
             "    ",
             "if azul in lista:",
-            "    lista.remove(len(lista) - 1)",
-            "",
-            "lista.sort()",
+            "    lista.pop(len(lista) - 1)",
             "",
             "verificar()",
         ]
@@ -575,15 +573,15 @@ const levels: GameLevel[] = [
             "    if chao != branco:",
             "        lista.append(chao)",
             "",
-            "# Na caixa do remove, informe o índice do item",
+            "# Na caixa do pop, informe o índice do item",
             "while lista.count(amarelo) > 1:",
-            "    lista.remove(lista.index(amarelo))",
+            "    lista.pop(lista.index(amarelo))",
             "while lista.count(lista.index(roxo)) > 1:",
-            "    lista.remove(lista.index(roxo))",
+            "    lista.pop(lista.index(roxo))",
             "while lista.count(lista.index(vermelho)) > 1:",
-            "    lista.remove(lista.index(vermelho))",
+            "    lista.pop(lista.index(vermelho))",
             "while lista.count(lista.index(laranja)) > 1:",
-            "    lista.remove(lista.index(laranja))",
+            "    lista.pop(lista.index(laranja))",
             "",
             "lista.sort()",
             "",
@@ -646,14 +644,14 @@ const levels: GameLevel[] = [
         startPosition: { y: 3, x: 1 },
         targetPath: [{ y: 3, x: 1 }, { y: 3, x: 2 }, { y: 3, x: 3 }, { y: 3, x: 4 }],
         code: [
-            "def passos_to_andar():",
+            "def passos_para_andar():",
             "    return 3",
             "",
             "def mover(vezes):",
             "    for _ in range(vezes):",
             "        direita()",
             "",
-            "quantidade = passos_to_andar()",
+            "quantidade = passos_para_andar()",
             "mover(quantidade)",
         ]
     },
@@ -1144,28 +1142,49 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
     };
 
     const handlePop = () => {
-        if (gameState !== 'playing') return;
-        if (inventory.length > 0) {
-            setDiscardCount(c => c + 1);
-        }
-        setInventory(prev => prev.slice(0, -1));
-    };
-    
-    const handleRemove = () => {
         if (gameState !== 'playing' || inventory.length === 0) return;
 
-        const indexStr = window.prompt("Qual índice você quer remover?", "Informe o índice");
+        const indexStr = window.prompt("Qual índice você quer remover? (Deixe vazio para remover o último)", "");
         if (indexStr === null) return;
 
-        const index = parseInt(indexStr, 10);
-
-        if (isNaN(index) || index < 0 || index >= inventory.length) {
-            alert("Índice inválido! Por favor, insira um número entre 0 e " + (inventory.length - 1));
+        if (indexStr.trim() === "" || isNaN(parseInt(indexStr, 10))) {
+            setInventory(prev => prev.slice(0, -1));
+            setDiscardCount(c => c + 1);
             return;
         }
 
+        const index = parseInt(indexStr, 10);
+        if (index < 0 || index >= inventory.length) {
+            alert("Índice inválido! Por favor, insira um número entre 0 e " + (inventory.length - 1));
+            return;
+        }
         setInventory(prev => prev.filter((_, i) => i !== index));
         setDiscardCount(c => c + 1);
+    };
+    
+    const handleRemove = () => {
+        if (gameState !== 'playing') return;
+        const colorStr = window.prompt("Informe a cor do chão para remover (vermelho, laranja, roxo, azul, amarelo):");
+        if (!colorStr) return;
+        const colorMap = {
+            vermelho: 3,
+            laranja: 4,
+            roxo: 5,
+            azul: 6,
+            amarelo: 9
+        };
+        const colorId = colorMap[colorStr.trim().toLowerCase()];
+        if (!colorId) {
+            alert("Cor inválida!");
+            return;
+        }
+        const idx = inventory.findIndex(item => item === colorId);
+        if (idx !== -1) {
+            setInventory(prev => prev.filter((_, i) => i !== idx));
+            setDiscardCount(c => c + 1);
+        } else {
+            alert("Nenhum item dessa cor no inventário!");
+        }
     };
 
     const handleSort = () => {
@@ -1469,7 +1488,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                                             </div>
                                             <div className="flex items-center gap-2 mt-1">
                                                 <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">P</kbd>
-                                                <span>- <b>pop():</b> Remove o último item da lista.</span>
+                                                <span>- <b>pop():</b> Remove um ítem da lista pelo índice.</span>
                                             </div>
                                             <div className="flex items-center gap-2 mt-1">
                                                 <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">S</kbd>
@@ -1481,7 +1500,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ startingId = 1, onlyLoopWorld = f
                                             </div>
                                             <div className="flex items-center gap-2 mt-1">
                                                 <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-12 text-center">D</kbd>
-                                                <span>- <b>remove():</b> Remove um item pelo índice.</span>
+                                                <span>- <b>remove():</b> Remove um item da lista pelo valor.</span>
                                             </div>
                                             <div className="flex items-center gap-2 mt-1">
                                                 <kbd className="bg-background px-1.5 py-0.5 rounded-md border w-20 text-center">ESPAÇO</kbd>
